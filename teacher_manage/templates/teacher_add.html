@@ -1,0 +1,278 @@
+{% extends 'info_templat.html' %}
+{% load static %}
+
+{% block tch_add %}
+    list-group-item active
+{% endblock tch_add %}
+
+{% block content2 %}
+<div class="col-lg-9 col-md-9" style="background-color: white; min-height: 500px; padding: 20px;">
+    <table class="table table-condensed" style="width:100%">
+        <ol class="breadcrumb">
+            <li>当前位置</li>
+            <li class="active">增加教师</li>
+        </ol>
+        <form id="tch_info" method="post" action="/teacher_manage/teacher_add/" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-column-loca">
+                <div id="result" class="form-column-pic" style="height:155px;width:95px"></div>
+                <center>
+                    <label for="pic">
+                    <input style="width:75px;font-size:13px" type="file" name="pic" id="照片" multiple="multiple" accept="image/*" onchange="ProcessFile(this)"/>
+                    </label>
+                </center>
+            </div>
+            <table class="table table-condensed" cellpadding="1" cellspacing="1" border="0">
+                <tr>
+                    <td class="form-column-header">
+                        &nbsp;&nbsp;&nbsp;姓&nbsp;&nbsp;名&nbsp;&nbsp;&nbsp;
+                    </td>
+                    <td>
+                        <span style="color: red;float: left;margin-left: 4px;line-height: 28px;font-weight: bold;font-size: 16px;">*&nbsp;&nbsp;</span>
+                        <label for="name">
+                        <input class="form-control" type="text" placeholder="请输入汉字或字母！" onblur="limit_letter_chinese(this,'教师姓名')" name="name" id="教师姓名"  dataType="*" style="width:200px;"/>
+                        </label>
+                        <div class="error-msg info"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-column-header">
+                        &nbsp;&nbsp;&nbsp;性&nbsp;&nbsp;别&nbsp;&nbsp;&nbsp;
+                    </td>
+                    <td>
+                        <label for="sex">
+                        <input type = "radio" name="sex" id="性别"value="m" checked="checked">&nbsp;&nbsp;male&nbsp;&nbsp;
+                        <input type = "radio" name="sex" id="性别"value="f">&nbsp;&nbsp;female
+                        </label>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-column-header">
+                        &nbsp;手&nbsp;机&nbsp;号&nbsp;
+                    </td>
+                    <td>
+                        <span style="color: red;float: left;margin-left: 4px;line-height: 28px;font-weight: bold;font-size: 16px;">*&nbsp;&nbsp;</span>
+                        <label for="tel">
+                        <input class="form-control" type="text"  placeholder="请填写8位或11位电话号码" onblur="limit_tel(this,'电话')" name="tel" id="电话" value="" dataType="*" style="width:200px;"/>
+                        </label>
+
+                        <div class="error-msg info"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-column-header">
+                        &nbsp;&nbsp;&nbsp;民&nbsp;&nbsp;族&nbsp;&nbsp;&nbsp;
+                    </td>
+                    <td>
+                        <span style="color: red;float: left;margin-left: 4px;line-height: 28px;font-weight: bold;font-size: 16px;">*&nbsp;&nbsp;</span>
+                        <label for="nation">
+                        <input class="form-control" type="text" onblur="limit_letter_chinese_length(this,20,'民族')" name="nation" id="民族" value="" dataType="*" style="width:200px;"/>
+                        </label>
+
+                        <div class="error-msg info"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-column-header">
+                        &nbsp;&nbsp;&nbsp;籍&nbsp;&nbsp;贯&nbsp;&nbsp;&nbsp;
+                    </td>
+                    <td>
+                        <span style="color: red;float: left;margin-left: 4px;line-height: 28px;font-weight: bold;font-size: 16px;">*&nbsp;&nbsp;</span>
+                        <label for="bpl">
+                        <input class="form-control" type="text" onblur="limit_letter_chinese_length(this,50,'籍贯')" name="bpl" id="籍贯" value="" dataType="*" style="width:200px;"/>
+                        </label>
+
+                        <div class="error-msg info"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-column-header">
+                        学校名称
+                    </td>
+                    <td>
+                        <span style="color: red;float: left;margin-left: 4px;line-height: 28px;font-weight: bold;font-size: 16px;">*&nbsp;&nbsp;</span>
+                        <label for="sch">
+                        <input class="form-control" type="text" onblur="limit_letter_chinese_length(this,20,'学校名称')"  name="sch" id="学校名称" value="" dataType="*" style="width:200px;"/>
+                        </label>
+
+                        <div class="error-msg info"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-column-header">
+                        &nbsp;&nbsp;&nbsp;学  院
+                    </td>
+                    <td>
+                        <span style="color: red;float: left;margin-left: 4px;line-height: 28px;font-weight: bold;font-size: 16px;">*&nbsp;&nbsp;</span>
+                        <label for="ins">
+                        <input class="form-control" type="text" onblur="limit_letter_chinese_length(this,20,'学院')"  name="ins" id="tch_ins" value="" dataType="*" style="width:200px;"/>
+                        </label>
+
+                        <div class="error-msg info"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-column-header">
+                        &nbsp;&nbsp;&nbsp;地&nbsp;&nbsp;址&nbsp;&nbsp;&nbsp;
+                    </td>
+                    <td>
+                        <span style="color:red;float:left;margin-left:4px;line-height:28px;font-weight:bold;font-size:16px;">*&nbsp;&nbsp;</span>
+                        <label for="adr">
+                        <input class="form-control" type="text" onblur="limit_length(this,50,'地址')"  name="adr" id="tch_adr" value="" dataType="*" style="width:200px;"/>
+                        </label>
+
+                        <div class="error-msg info"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-column-header">
+                        邮政编码
+                    </td>
+                    <td>
+                        <span style="color:red;float:left;margin-left:4px;line-height:28px;font-weight:bold;font-size:16px;">*&nbsp;&nbsp;</span>
+                        <label for="post">
+                        <input class="form-control" type="text" placeholder="请输入6位数字的邮政编码" onblur="limit_number_length(this,6,6,'邮政编码')"  name="post" id="tch_pC" value="" dataType="*" style="width:200px;"/>
+                        </label>
+
+                        <div class="error-msg info"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-column-header">
+                        &nbsp;&nbsp;&nbsp;邮&nbsp;&nbsp;箱&nbsp;&nbsp;&nbsp;
+                    </td>
+                    <td>
+                        <span style="color: red;float: left;margin-left: 4px;line-height: 28px;font-weight: bold;font-size: 16px;">*&nbsp;&nbsp;</span>
+                        <label for="ema">
+                        <input class="form-control" type="text" onblur="limit_email(this,'邮箱')" name="ema" id="邮箱" value="" dataType="*" style="width:200px;"/>
+                        </label>
+
+                        <div class="error-msg info"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-column-header">
+                        &nbsp;&nbsp;&nbsp;个人主页&nbsp;&nbsp;&nbsp;
+                    </td>
+                    <td>
+                        <span style="color: red;float: left;margin-left: 4px;line-height: 28px;font-weight: bold;font-size: 16px;">*&nbsp;&nbsp;</span>
+                        <label for="page">
+                        <input class="form-control" type="text"  name="page" id="个人主页" value="无" dataType="*" style="width:200px;"/>
+                        </label>
+                        <div class="error-msg info"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-column-header">
+                        &nbsp;&nbsp;&nbsp;身&nbsp;&nbsp;份&nbsp;&nbsp;&nbsp;
+                    </td>
+                    <td>
+                        <label for="iden">
+                        <input type = "radio" name="iden" id="身份" value="教师" checked="checked">&nbsp;&nbsp;教授&nbsp;&nbsp;
+                        <input type = "radio" name="iden" id="身份" value="副教授" >&nbsp;&nbsp;副教授&nbsp;&nbsp;
+                        <input type = "radio" name="iden" id="身份" value="讲师" >&nbsp;&nbsp;讲师
+                        </label>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-column-header">
+                        入职年份
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <div class="input-icon-group">
+                                <div class="input-group" style="width:100%">
+                                    <label for="career">
+                                    <input class="form-control" placeholder="选择日期" type="text" name="career" id ='入职年份' class="Wdate" onclick="WdatePicker({dateFmt:'yyyy'})" style="width:186px;cursor:hand"/>
+                                    </label>{{ form_obj.tch_career }}{{ form_obj.tch_career.errors.0 }}
+
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-column-header">
+                        教学经历
+                    </td>
+                    <td>
+                        <label for="edu"></label>
+                        <textarea class="form-control" name="edu" id="教学经历"style="width:500px;height:150px;"></textarea>
+
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-column-header">
+                        工作经历
+                    </td>
+                    <td>
+                        <label for="exp"></label>
+                        <textarea class="form-control" name="exp" id="工作经历"style="width:500px;height:150px;"></textarea>
+
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-column-header">
+                        学术任职
+                    </td>
+                    <td>
+                        <label for="aca"></label>
+                        <textarea class="form-control" name="aca" id="学术任职"style="width:500px;height:150px;"></textarea>
+
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-column-header">
+                        荣誉获奖
+                    </td>
+                    <td>
+                        <label for="honr"></label>
+                        <textarea class="form-control" name="honr" id="荣誉称号"style="width:500px;height:150px;"></textarea>
+
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-column-header">
+                        个人简介
+                    </td>
+                    <td>
+                        <label for="intro"></label>
+                        <textarea class="form-control" name="intro" id="个人简介"style="width:500px;height:150px;"></textarea>
+
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+
+                    </td>
+                    <td>
+                        <center><span class="col-md-2 col-xs-12">
+                        <!--<button class="btn btn-primary btn-group-vertical" style="width:80px" type="submit">
+                        提交</button>-->
+                            <input class="btn btn-primary btn-group-vertical" style="width:80px" type="submit">
+                        </span><span class="col-md-3 col-xs-12">
+                        <button class="btn btn-warning" style="width:120px">
+                            保存到草稿箱
+                        </button></span><span class="col-md-2 col-xs-12">
+                        <a id="backBtn" class="btn btn-default" style="width:80px" target="_blank" href="/teacher_manage/tch_edit/">
+                            返回
+                        </a></span></center>
+                    </td>
+                    <td></td>
+                </tr>
+            </table>
+        </form>
+    </table>
+</div>
+<script type="text/javascript" src="{% static 'js/checkform.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/team_info.js' %}"></script>
+
+{% endblock content2 %}

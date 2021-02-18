@@ -1,0 +1,20 @@
+{% extends 'manage_template.html' %}
+{% block info_mg %}
+    active
+{% endblock info_mg %}
+
+{% block content1 %}
+    <div class="part1">
+    <div id="dir">
+    <div class="col-lg-2 col-md-3" style="height: auto;">
+        <div class="list-group">
+            <center>
+                <a href="/teacher_manage/tch_edit/" class="{% block tch_add %}list-group-item{% endblock tch_add %}" id="tch_edit" style="font-weight:bold;">增 加 教 师</a>
+                <a href="/teacher_manage/teacher_list/" class="{% block tch_list %}list-group-item{% endblock tch_list %}" id="tch_list" style="font-weight:bold;">教 师 列 表</a>
+                <a href="/student_manage/stu_edit/" class="{% block stu_add %}list-group-item{% endblock stu_add %}" id="stu_edit" style="font-weight:bold;">增 加 学 生</a>
+                <a href="/student_manage/stu_list/" class="{% block stu_list %}list-group-item{% endblock stu_list %}" id="stu_list" style="font-weight:bold;">学 生 列 表</a>
+            </center>
+        </div>
+    </div>
+    </div>
+{% endblock content1 %}

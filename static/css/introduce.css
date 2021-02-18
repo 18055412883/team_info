@@ -1,0 +1,317 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+li{
+    * vertical-align:bottom;/*属性设置元素的垂直对齐方式,把元素的顶端与行中最低的元素的顶端对齐*/
+}
+html{
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+body{
+    font-family: Microsoft Yahei;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    background: #ffffff;
+}
+/*头部*/
+ .header{
+     width: 100%;
+     height: 150px;
+     margin: 0 auto 0;
+     background: #ffffff;
+     position: relative;
+     z-index:9999;
+ }
+ .header .top{
+     width: 100%;
+     margin: 0 auto;
+     height: 110px;
+ }
+ .header .top .logoDiv img{
+	 width:290px;
+	 height:90px;
+     float:left;
+     margin-top: 15px;
+     margin-left: 6%;
+	}
+ .header .top .pull-right{
+    float: right !important;
+    width:290px;
+	height:32px;
+    margin-top: 55px;
+    margin-right: 8%;
+    background: #fffef9;
+ }
+ #box{
+        width: 290px;
+        margin: 30px auto;
+        font-family: 'Microsoft YaHei';
+        font-size: 14px;
+        padding:0 0 0 40px;
+    }
+	input{
+        width: 210px;
+        border: 1px solid #8E44AD;
+        height: 30px;
+        /*float: left;*/
+        margin-top: 0;
+    }
+
+.header .nav{
+     width: 100%;
+     height: 40px;
+     background: #ffffff;/*导航栏整体的底色*/
+ }
+.header .nav .nav_list{
+    width: 1170px;
+    height:40px;
+    background: #ffffff;/*导航栏列表底色 白色*/
+    position: relative;
+    z-index: 10;
+    margin: 0 auto;
+}
+.header .nav .nav_list .ul1{
+    list-style: none;
+    display: table;
+    width: 1170px;
+    height: 40px;
+}
+.header .nav .nav_list .ul1 .on{
+    background: purple !important;
+}
+.header .nav .nav_list .ul1 .li1{
+    font-family: "微软雅黑";
+    font-weight: bold;
+    float: left;
+    margin-left: 5.5px;
+    width: 140px;
+    height: 40px;
+    line-height: 40px;
+    color: #ffffff;/*字体*/
+    font-size: 16px;
+    text-align: center;
+    background: #8E44AD;
+}
+.header .nav .nav_list .ul1 .li1 a{
+    font-family:"微软雅黑";
+    font-size: 16px;
+    color: #f0f0f0;
+    text-align: center;
+    font-weight: bold;
+}
+.header .nav .ul1 .li1 a{
+    text-decoration: none;
+}
+.header .nav .ul1 .li1 .ul2{
+    list-style: none;
+    padding: 0 0;
+    margin-left: 22.5px;
+    display: table;
+    width: 90px;
+    display:none;
+}
+.header .nav .ul1 .li1 .ul2 li{
+    font-family: "微软雅黑";
+    float:left;
+    width: 93px;
+    height: 40px;
+    line-height: 40px;
+    color: #003264;
+    font-size: 14px;
+    text-align: center;
+    background:#FFFFFF;
+    margin-left:0px;
+}
+.header .nav .ul1 .li1 .ul2 .mouseOn,.header .nav .ul1 .li1 .ul2 .mouseOn div{
+    background:#e5e5e5;
+}
+.header .nav .ul1 .li1 .ul2 li div{
+    width: 93px;
+    height: 40px;
+    line-height: 40px;
+    color: #003264;
+    background: #E5E5E5;
+    border-top: 1px solid #C6D7D5;
+    box-sizing: border-box;
+}
+/*间隔条*/
+/*jg_line{*/
+    /*width: 100%;*/
+    /*height: 3px;*/
+    /*overflow:hidden;*/
+    /*background:#000000 repeat-x;*/
+/*}*/
+.part1{
+    overflow: hidden;
+    positiion: relative;
+    width: 1159px;
+    /*height: 2000px;*/
+    text-align: left;
+    margin: 0 auto;
+    background: #ffffff;
+    margin-top: 15px;
+}
+.left_part{
+    width: 300px;
+    /*height: 1150px;*/
+    background: #ffffff;
+    float: left;
+    border: none;
+    margin-top: 5px;
+}
+.right_part{
+    width: 855px;
+    /*height: 1150px;*/
+    background: #ffffff;
+    border: 1px solid #333333;
+    float: right;
+    margin-top: 5px;
+}
+.line1 {
+	width: 235px;
+    margin-left: 5px;
+    margin-top: 5px;
+    height: 30px;
+    border-bottom-width: 3px;
+    border-bottom-style: dotted;
+    border-bottom-color: #241f1f;
+}
+.right_bg li {
+    margin-top: 10px;
+    width: 750px;
+    height: 40px;
+    background-image: url(../img/heading-background.png);
+    font-size: 20px;
+    font-weight: bold;
+	list-style:none;
+    color: #CE5300;
+    font-family: "宋体";
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    text-align: left;
+}
+
+.sp_intro{
+    width: 90%;
+    margin: 20px 0px 20px 45px;
+    /*background-color: #9a9afb;*/
+}
+.sp_intro a{
+    text-decoration: #000000;
+}
+
+.part1 .news .ptitle{
+        height: 60px;
+        width: 700px;
+        background: #FF6600;
+        text-align: left;
+        color: #323232;
+        font-family: "微软雅黑"
+    }
+.left_list{
+    width: 300px;
+	height:500px;
+    float: left;
+}
+.left_list_inner{
+    margin: 0px 1px 1px 40px;
+    width: 220px;
+    background: #ffffff;
+}
+.left_list_inner li{
+    width: 210px;
+    height:40px;
+    text-align: center;
+    line-height: 40px;
+    font-size: 17px;
+    list-style: none;
+}
+.left_list_inner li:hover{  /*鼠标放上面的颜色*/
+    width: 208px;
+    border-left-color: #8E44AD;
+    border-left-width: 10px;
+    border-left-style: solid;
+    background-color: #eee;
+}
+.left_list_inner a{
+    color: rgb(51, 51, 51);
+    text-decoration: none;
+}
+.left_list_inner .current{
+    width: 208px;
+    border-left-color: #8E44AD;
+    border-left-width: 10px;
+    border-left-style: solid;
+    background-color: #8E44AD;
+    color: #f0f0f0;
+
+}
+.left_list_inner .a{
+     color:#f0f0f0;
+}
+
+.left_list_inner .current:hover{
+    width: 208px;
+    border-left-color: #8E44AD;
+    border-left-width: 10px;
+    border-left-style: solid;
+    background-color: #8E44AD;
+
+}
+.footer{
+    width: 100%;
+    margin-top: 2px;
+    /*height: 250px;*/
+    overflow: hidden;
+    /*background: url(../img/footer_bg.png);*/
+}
+.footer-bottom{
+    width: 100%;
+    height: 30px;
+    background: #000000;
+
+}
+.footer-bottom ul{
+    text-align: center;
+}
+.nav01 {
+	height: 30px;
+    text-align: center;
+}
+.nav01 ul {
+    display: inline-block;
+}
+.nav01 li {
+	margin: 0px 2px;
+    color: rgb(255, 255, 255);
+    line-height: 25px;
+    font-size: 16px;
+    font-family: "宋体";
+    float: left;
+    list-style: none;
+}
+.nav01 a {
+    text-decoration: none;
+    color: #ffffff;
+
+}
+.nav01 a:hover {
+    background-color: #333333 ;
+}
+.newslist_height{
+    font-size:17px;
+    color:#000000;
+    max-width:500px;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    overflow:hidden;
+}
+
+span.highlighted {
+    color: red;
+}

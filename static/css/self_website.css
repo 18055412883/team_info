@@ -1,0 +1,124 @@
+hr{
+    display: block;
+    unicode-bidi: isolate;
+    width:100.5%;
+    margin-block-start: 0.0em;
+    margin-block-end: 0.5em;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+    overflow: hidden;
+    border-style: inset;
+    border-width: 1px;
+    color: purple;
+}
+.ptitle{
+    background-color: #c171cd42;
+    height: 35px;
+    width:101%;
+    line-height: 35px;
+    color: #690069;
+    text-indent: 6px;
+}
+.content{
+    /*background-color: #FC9D9A ;*/
+    margin-top: 0px;
+    height: 90%;
+    line-height: 25px;
+    color: #333;
+
+}
+.content-container{
+    width: 100%;
+    height: 90%;
+    background-color: #ffffff;
+
+}
+
+.content-container li{
+    font-family: "微软雅黑";
+    font-size: 14px;
+    /*font-weight: bold;*/
+    background-color: #ffffff;
+}
+.content-container img{
+    width: 150px;
+    height: 209px;
+    border: 1px;
+    margin-top: 10px;
+    text-align: center;
+}
+.content .name{
+    width: 190px;
+    height: 25px;
+    background-color: #ffffff;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 15px;
+    /*line-height: 25px;*/
+    font-weight: bold;
+    text-align: center;
+}
+.left_part_top{
+    border:2px ;
+    width: 96%;
+    height: 30%;
+    background-color: #ffffff;
+    margin: 3px 3px 5px 5px;
+}
+.left_part_middle{
+    border:2px solid #fffef9;
+    width: 96%;
+    height: 22%;
+    background-color: #ffffff;
+    margin: 3px 3px 5px 5px;
+}
+
+
+.left_part_bottom{
+    border:2px ;
+    width: 96%;
+    height: 45%;
+    background-color: #ffffff;
+    margin: 3px 3px 5px 5px;
+}
+.text-content{
+    position: relative;
+    margin: 5px 5px 5px 5px;
+    width: 96%;
+    height: 90%;
+    top:10px;
+    left:10px;
+    right: 10px;
+    background-color: #ffffff;
+    text-align:left;
+    line-height:30px;
+    white-space:pre-line;
+
+}
+.right_part_top{
+    border:2px ;
+    width: 98%;
+    min-height: 280px;
+    background-color: #ffffff;
+    margin: 3px 3px 5px 5px;
+}
+.right_part_middle1{
+    border:2px ;
+    width: 98%;
+    min-height: 280px;
+    background-color: #ffffff;
+    margin: 3px 3px 5px 5px;
+}
+.right_part_middle2{
+    border:2px solid #fffef9;
+    width: 98%;
+    min-height: 280px;
+    background-color: #ffffff;
+    margin: 3px 3px 5px 5px;
+}
+.right_part_bottom{
+    border:2px solid #fffef9;
+    width: 98%;
+    min-height: 280px;
+    background-color: #ffffff;
+    margin: 3px 3px 5px 5px;
+}

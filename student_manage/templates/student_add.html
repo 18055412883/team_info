@@ -1,0 +1,135 @@
+
+{% extends 'info_templat.html' %}
+
+{% block stu_add %}
+    list-group-item active
+{% endblock stu_add %}
+
+{% block content2 %}
+
+<div class="col-lg-9 col-md-9" style="background-color: white; min-height: 500px; padding: 20px;">
+    <table class="table table-condensed">
+        <ol class="breadcrumb">
+            <li>当前位置</li>
+            <li class="active">增加学生</li>
+        </ol>
+        <form  id="stu_info" method="post" {% comment %}action="/student_manage/stu_add/"{% endcomment %} enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-column-loca">
+                <div id="result" class="form-column-pic" style="height:155px;width:95px"></div>
+                <center>
+                    <label for="stu_pic">
+                    <input style="width:75px;font-size:13px" type="file" name="stu_pic" id="照片" multiple="multiple" accept="image/*" onchange="ProcessFile(this)"/>
+                    </label>
+                </center>
+            </div>
+            <table class="table table-condensed" cellpadding="1" cellspacing="1" border="0">
+                <tr>
+                    <td class="form-column-header">
+                        &nbsp;&nbsp;&nbsp;姓&nbsp;&nbsp;名&nbsp;&nbsp;&nbsp;
+                    </td>
+                    <td>
+                        <span style="color: red;float: left;margin-left: 4px;line-height: 28px;font-weight: bold;font-size: 16px;">*&nbsp;&nbsp;</span>
+                        <label for="stu_name">
+                        <input class="form-control" placeholder="请输入由汉字、字母组成的学生姓名" onblur="limit_letter_chinese(this,'学生姓名')" type="text" name="stu_name" id="stu_name" value="" dataType="*" style="width:200px;"/>
+                        </label>
+                        <div class="error-msg info"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-column-header">
+                        &nbsp;&nbsp;&nbsp;账&nbsp;&nbsp;号&nbsp;&nbsp;&nbsp;
+                    </td>
+                    <td>
+                        <span style="color: red;float: left;margin-left: 4px;line-height: 28px;font-weight: bold;font-size: 16px;">*&nbsp;&nbsp;</span>
+                        <label for="stu_id">
+                        <input class="form-control" placeholder="请输入8到15位的学工号" onblur="limit_number_length(this,8,15,'帐号')" type="text" name="stu_id" id="stu_id" value="" dataType="*" style="width:200px;"/>
+                        </label>
+                        <div class="error-msg info"></div>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td class="form-column-header">
+                        &nbsp;&nbsp;&nbsp;性&nbsp;&nbsp;别&nbsp;&nbsp;&nbsp;
+                    </td>
+                    <td>
+                        <label for="stu_sex">
+                        <input type = "radio" name="stu_sex" value="m" checked="checked">&nbsp;&nbsp;男&nbsp;&nbsp;
+                        <input type = "radio" name="stu_sex" value="f">&nbsp;&nbsp;女
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-column-header">
+                        &nbsp;&nbsp;&nbsp;学&nbsp;&nbsp;历&nbsp;&nbsp;&nbsp;
+                    </td>
+                    <td>
+                        <label for="stu_iden">
+                        <input type = "radio" name="stu_iden" value="0" checked="checked">&nbsp;&nbsp;硕士&nbsp;&nbsp;
+                        <input type = "radio" name="stu_iden" value="1" >&nbsp;&nbsp;博士&nbsp;&nbsp;
+                        <input type = "radio" name="stu_iden" value="2" >&nbsp;&nbsp;博士后
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-column-header">
+                        个人简介
+                    </td>
+                    <td>
+                        <label for="stu_intro">
+                        <textarea class="form-control" name="intro" id="stu_intro"style="width:500px;height:150px;"></textarea>
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        <center><span class="col-md-2 col-xs-12">
+                        <input type="button" class="btn btn-primary btn-group-vertical" style="width:80px" value="保存" id="sub">
+                        </span>
+                            <span class="col-md-3 col-xs-12">
+                        <button style="width:120px" onclick="return sub_info(true,'f','stu')" class="button button-rounded button-small button-primary">
+                            保存到草稿箱
+                        </button></span>
+                            <span class="col-md-3 col-xs-12">
+                        <a id="backBtn" class="btn btn-default" style="width:80px" href="/student_manage/stu_edit/">
+                            返回
+                        </a></span>
+                        </center>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </table>
+</div>
+
+<script>
+    $('#sub').click(function () {
+        $.ajax({
+            url: '/student_manage/stu_add/',
+            type: 'post',
+            data: {
+                csrfmiddlewaretoken: $("[name='csrfmiddlewaretoken']").val(),
+                stu_name: $('[name="stu_name"]').val(),
+                stu_id: $('[name="stu_id"]').val(),
+                stu_sex: $('[name="stu_sex"]').val(),
+                stu_iden: $('[name="stu_iden"]').val(),
+                stu_pic: $('[name="stu_pic"]').val(),
+                stu_intro: $('[name="stu_intro"]').val()
+            },
+            async: false,
+            status: 200,
+            success: function () {
+                alert('添加成功')
+                window.location = '/student_manage/stu_add/'
+            }
+        })
+    })
+
+</script>
+
+{% endblock content2 %}
+
+

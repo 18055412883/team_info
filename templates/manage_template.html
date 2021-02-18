@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <script type="text/javascript" src="{% static 'js/jquery-1.11.3.min.js'%}"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="{% static 'css/introduce.css'%}" type="text/css" rel="stylesheet">
+    <link href="{% static 'bootstrap-3.3.7-dist/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+    <script href="{% static 'js/contact_us.js' %}" type="text/javascript"></script>
+    <script src="{% static 'js/regex.js' %}" type="text/javascript"></script>
+    <link href="{% static 'editor/kindeditor/themes/default/default.css' %}" type="text/css" rel="stylesheet">
+    <link href="/static/ico/favicon.ico" rel="Shortcut Icon">
+    <link href="/static/ico/favicon.ico" rel="Bookmark">
+    <link rel="shortcuticon" href="/static/ico/favicon.ico" />
+    <title>管理员界面</title>
+    <style>
+			.jumbotron {
+				background: linear-gradient(45deg, #66327C 0, #B481BB 90%);
+				color: white;
+				padding-top: 45px;
+				padding-bottom: 45px;
+			}
+			.navbar {
+				margin-bottom: 0px;
+			}
+
+            .form-column-loca{
+            margin: 1.5%;
+            position:absolute; top:12.4%; z-index:11;
+            left: 70%;
+            }
+            .form-column-header{
+                margin-top: 1%;
+            }
+            .form-column-pic{
+                width: 90px;
+                height: 150px;
+                border: solid;
+                background-color: white;
+                border-color: #989898;
+            }
+
+    </style>
+    <style>
+    input:focus{
+        border-style: solid;
+         border-color: #00c9fe;
+        box-shadow: 0 0 15px #00c9fe;
+    }
+    textarea:focus{
+        border-style: solid;
+         border-color: #00c9fe;
+        box-shadow: 0 0 15px #00c9fe;
+    }
+    input[type="file"]{
+         color: transparent;
+         width: 75px;
+         font-size: 15px;
+        border-style: none;
+    }
+    input[type="radio"]{
+        width: 10px;
+        height: 10px;
+        display: inline-block;
+    }
+    </style>
+    <style>
+    @media screen and (min-width: 768px){
+        #phone_logo{
+            display: none;
+        }
+        #dir{
+            display: block;
+        }
+        #dir_bar{
+            display: none;
+        }
+     }
+    @media screen and (max-width:768px){
+        #phone_logo{
+            display: block;
+        }
+        #dir{
+            display: none;
+        }
+        #dir_bar{
+            display: block;
+        }
+        .part1{
+            width: 100%;
+        }
+    }
+</style>
+</head>
+<body>
+<nav class="navbar navbar-default" >
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <img src="/static/img/logo.png" width="173" height="50">
+        </div>
+        <div >
+            <ul class="nav navbar-nav navbar-right">
+                <li><a>{&nbsp;&nbsp;{{ '欢迎您!' }}</a></li>
+                <li><a href="" style="color:#6699A1;">注销</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- 巨幕 -->
+<div class="jumbotron">
+    <div class="container">
+
+        <h1 style="color:white">管理端</h1>
+
+    </div>
+</div>
+<!--导航栏开始-->
+<nav class="nav navbar-default">
+    <div class="navbar-header">
+        <a href="#" class="navbar-brand" id="phone_logo">导航</a>
+        <button class="navbar-toggle collapsed" data-toggle="collapse" id="nav_btn" data-target="#menu">
+            <span class="glyphicon glyphicon-align-justify" ></span>
+        </button>
+    </div>
+    <div class="collapse navbar-collapse" id="menu" style="padding-left: 0;padding-right: 0">
+        <ul class="nav nav-tabs nav-justified">
+        <li role="presentation" id="tch0" class="{% block ac_mg %}{% endblock ac_mg %}"><a href="" style="color:purple;font-size:18px;font-family:微软雅黑;font-weight: bold;">帐户管理</a></li>
+        <li role="presentation" id="tch1" class="{% block info_mg %}{% endblock info_mg %}"><a href="/teacher_manage/tch_edit/" style="color:purple;font-size:18px;font-family:微软雅黑;font-weight: bold;">团队信息管理</a></li>
+        <li role="presentation" id="news" class="{% block news_mg %}{% endblock news_mg %}"><a href="" style="color:purple;font-size:18px;font-family:微软雅黑;font-weight: bold;">新闻管理</a></li>
+        <li role="presentation" id="thesis" class="{% block aca_mg %}{% endblock aca_mg %}"><a href="" style="color:purple;font-size:18px;font-family:微软雅黑;font-weight: bold;">教学成果管理</a></li>
+        <li role="presentation" id="project" class="{% block sci_mg %}{% endblock sci_mg %}"><a href="" style="color:purple;font-size:18px;font-family:微软雅黑;font-weight: bold;">科研成果管理</a></li>
+        <li role="presentation" id="recruit" class="{% block enroll_mg %}{% endblock enroll_mg %}"><a href="" style="color:purple;font-size:18px;font-family:微软雅黑;font-weight: bold;">招生招聘</a></li>
+        <li role="presentation" id="contact_us" class="{% block con_us %}{% endblock con_us %}"><a href="" style="color:purple;font-size:18px;font-family:微软雅黑;font-weight: bold;">联系我们</a></li>
+        <li role="presentation" id="operate_log" class="{% block data_mg %}{% endblock data_mg %}"><a href="" style="color:purple;font-size:18px;font-family:微软雅黑;font-weight: bold;">数据库管理</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!--导航栏结束-->
+{% block content1 %}
+
+<!--
+<nav class="nav navbar-default" id="dir_bar" style="width: 100%">
+        <div class="navbar-header">
+            <a href="#" class="navbar-brand" >菜单</a>
+            <button class="navbar-toggle collapsed" data-toggle="collapse" id="dir_btn"  data-target="#dir_span">
+                <span class="glyphicon glyphicon-align-justify" ></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="dir_span">
+            <ul class="nav nav-tabs nav-justified">
+                {% comment %}{% if request.session.iden == 'manager' %}{% endcomment %}
+                    <li role="presentation" ><a href="/teacher_manage/tch_edit/" style="color:purple;font-size:18px;font-family:微软雅黑;font-weight: bold;">增 加 教 师</a></li>
+                {% comment %}{% endif %}{% endcomment %}
+                    <li role="presentation" ><a href="/teacher_manage/tch_list/" style="color:purple;font-size:18px;font-family:微软雅黑;font-weight: bold;" >教 师 列 表</a></li>
+                    <li role="presentation" ><a href="/teacher_manage/stu_edit/" style="color:purple;font-size:18px;font-family:微软雅黑;font-weight: bold;" >增 加 学 生</a></li>
+                    <li role="presentation" ><a href="/teacher_manage/stu_list/" style="color:purple;font-size:18px;font-family:微软雅黑;font-weight: bold;" >学 生 列 表</a></li>
+            </ul>
+        </div>
+</nav>
+-->
+
+
+{% endblock content1 %}
+
+{% block content2 %}
+
+{% endblock content2 %}
+<script rel="stylesheet" type="text/javascript" src="{% static 'js/team_info.js'%}"></script>
+<script type="text/javascript" src="{% static 'js/regex.js' %}"></script>
+<script rel="stylesheet" type="text/javascript" src="{% static 'My97DatePicker/WdatePicker.js'%}"></script>
+<script rel="stylesheet" type="text/javascript" src="{% static 'js/checkform.js'%}"></script>
+</div>
+
+<div class="footer-bottom-test" style="width: 100%; height: auto; background-color: black; ">
+        <div class="row" style="width: 100%; height: auto;text-align: center;color: white;font-size:15px;">
+            <div class="col-xs-12 col-lg-2 col-md-2 col-sm-12">
+               版权所有:西安理工大学
+            </div>
+            <div class="col-xs-12 col-lg-3 col-md-3 col-sm-12">
+                地址:陕西省西安市金花南路5号
+            </div>
+            <div class="col-xs-12 col-lg-2 col-md-2 col-sm-12">
+                邮编:710048
+            </div>
+            <div class="col-xs-12 col-lg-3 col-md-3 col-sm-12">
+
+                管理员信箱:baitao@xaut.edu.cn
+
+            </div>
+            <div class="col-xs-12 col-lg-2 col-md-2 col-sm-12">
+                 陕ICP备19000857号
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="{% static '/static/js/footer.js'%}"></script>
+<script type="text/javascript" src="{% static '/static/js/jquery-1.11.3.min.js' %}"></script>
+<script rel="stylesheet" src="{% static '/static/bootstrap-3.3.7-dist/js/bootstrap.js' %}"></script>
+<script rel="stylesheet" type="text/javascript" src="{% static '/static/My97DatePicker/WdatePicker.js'%}"></script>
+<script rel="stylesheet" type="text/javascript" src="{% static '/static/js/checkform.js'%}"></script>
+<script type="text/javascript" src="{% static '/static/js/manager_dir_nav.js' %}"></script>
+</html>

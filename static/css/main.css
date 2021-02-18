@@ -1,0 +1,123 @@
+@charset "utf-8";
+/* CSS Document */
+/*404和500报错页面使用的css*/
+html, body{
+	
+	height:100%;
+	background:#186aa9 url(../img/sky-background.png) top repeat-x; /*sky-background.png*/
+	overflow:hidden;
+	padding:0;
+	margin:0;
+	/* font-family:Arial, Helvetica, sans-serif; */
+}
+
+a{
+	color:#3680b1;
+}
+
+img, a img{
+	
+	border:0px none;	
+	outline:none;
+	
+}
+
+/* === Main Section === */
+
+#wrapper{
+	
+	width:980px;
+	margin:0px auto;
+	position:relative;
+	height:100%;
+	/*background:url(../img/sky-shine.jpg) top left no-repeat;*/
+	
+}
+
+h1.not-found-text{
+	
+	font-size:70px;
+	color:#fff;
+	letter-spacing:2px;
+	margin-bottom:20px;
+}
+
+div.not-found-text{
+	width:1000px;
+}
+
+h1.back-text{
+
+	font-size:30px;
+	color:#fff;
+	letter-spacing:2px;
+	margin-bottom:20px;
+
+}
+
+div.back-text{
+}
+
+div.graphic{
+	
+	position:absolute;
+	top:80px;
+	left:0px;
+	background:url(../img/404.png) top left no-repeat;
+	width:494px;
+	height:331px;
+	
+}
+
+div.planet{
+
+	position:absolute;
+	right:-400px;
+	bottom:-1100px;
+	margin:0px auto;
+	width:980px;
+	background:url(../img/planet.png) center no-repeat;
+	height:1920px;
+	z-index:0;
+	
+}
+
+/*div.dog-wrapper{
+	position:absolute;
+	bottom:300px;
+	left:440px;
+}*/
+
+div.dog{
+	position:absolute;
+	bottom:300px;
+	right:40px;
+	width:80px;
+	height:80px;
+	z-index:999;
+	background:url(../img/dog.png) 0px 0px no-repeat;
+	
+}
+
+div.top-menu{
+    height:200px;
+	color:#ffffff;
+	z-index:998;
+	display: table-cell;
+    vertical-align:middle;
+}
+
+div.top-menu a{
+	
+	text-decoration:none;
+	color:#eeeeee;
+	margin:0px 5px;
+	font-size:30px;
+
+}
+
+div.top-menu a:hover{
+	
+	color:#abd7fa;	
+	
+}

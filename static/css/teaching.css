@@ -1,0 +1,153 @@
+.part{
+    margin: 0 auto;
+    /* padding-top: 10px; */
+    padding-bottom: 10px;
+    width: 80%;
+    background-color: aquamarine;
+}
+h2{
+    padding-top: 50px;
+    padding-left:35px ;
+}
+h3{
+    padding-top: 0px;
+    padding-left: 0px ;
+}
+p{
+    font-family: "微软雅黑", cursive;
+    font-size: 20px;
+    text-indent: 2em;
+}
+.wish{
+    margin: 5px auto;
+    width: 95%;
+    border: 1px;
+    background-color: white;
+    /*border: 1px solid #8E44AD;*/
+   }
+.teachers{
+    margin: 0 auto;
+    padding: 0;
+    padding-top: 5px;
+    width: 95%;
+    background-color: #fffef9;
+    /*border: 1px solid #8E44AD;*/
+}
+.teachers:after {
+    content: '  ';
+    display: table;
+    clear: both;
+}
+.professors{
+    margin: 0 auto;
+    padding-top: 5px;
+    width: 95%;
+    background-color:#fffef9;
+}
+.professors:after {
+    content: '  ';
+    display: table;
+    clear: both;
+}
+.fprofessors{
+    margin: 0 auto;
+    padding-top: 5px;
+    width: 95%;
+    background-color:#fffef9;
+}
+.fprofessors:after {
+    content: '  ';
+    display: table;
+    clear: both;
+}
+.lecturers{
+    margin: 0 auto;
+    padding-top: 5px;
+    width: 95%;
+    background-color:#fffef9;
+}
+.lecturers:after {
+    content: '  ';
+    display: table;
+    clear: both;
+}
+.students{
+    margin: 0 auto;
+    padding-top: 5px;
+    width: 95%;
+    background-color: #fffef9;
+
+}
+.students:after {
+    content: '  ';
+    display: table;
+    clear: both;
+}
+.doctors{
+    margin: 0 auto;
+    padding-top: 5px;
+    width: 95%;
+    /*background-color:burlywood;*/
+}
+.doctors:after {
+    content: '  ';
+    display: table;
+    clear: both;
+}
+.masters{
+    margin: 0 auto;
+    padding-top: 5px;
+    width: 95%;
+    /*background-color:burlywood;*/
+}
+.masters:after {
+    content: '  ';
+    display: table;
+    clear: both;
+}
+.undergraduates{
+    margin: 0 auto;
+    padding-top: 5px;
+    width: 95%;
+    /*background-color:burlywood;*/
+}
+.undergraduates:after {
+    content: '  ';
+    display: table;
+    clear: both;
+}
+.t{
+    width:50%;
+    float:left;
+    padding: 0;
+    margin: 0;
+}
+.teamtb{
+    border-collapse:collapse;
+    border-spacing:0;
+    width:95%;
+    float:left;
+    margin:0 8px 10px 8px;
+}
+.teamtb th,.teamtb td{
+    padding:3px 5px;
+    line-height:18px;
+    border:1px dotted #d8d8d8;
+}
+td.tdinfo{
+    vertical-align:top;
+}
+td.tdimg{
+    width:120px;
+}
+.divinfo{
+    height:113px;
+    overflow:auto;
+    vertical-align:top;
+}
+.tips{
+    padding-bottom:8px;
+    width:100%;
+    height:20px;
+    background-color:#eee;
+}

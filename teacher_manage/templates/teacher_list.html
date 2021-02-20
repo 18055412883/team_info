@@ -13,7 +13,7 @@
             <li class="active">教师列表</li>
         </ol>
         <table class="table table-condensed">
-        {% for tch in news %}
+        {% for tch in curr_page_obj %}
             <tr>
                 <td style="width:700px;">
                     <a href="/teacher_manage/teaching/{{ tch.id }}/" target="_blank">
@@ -32,8 +32,8 @@
         <div class="paginator" align="center">
             <ul class="pagination">
                 <li>
-                    {% if page_of_news.has_previous %}{# 是否有上一页 #}
-                    <a href = "?page={{ page_of_news.previous_page_number }}" aria-label="Previous">
+                    {% if curr_page_obj.has_previous %}{# 是否有上一页 #}
+                    <a href = "?page={{ curr_page_obj.previous_page_number }}" aria-label="Previous">
                         <span aria-hidden="true"> &laquo; </span></a>
                     {% else %}
                 </li>
@@ -41,7 +41,7 @@
                 {% endif %}
                 {#全部页码#}
                 {% for page_num in page_range %}
-                {% if page_num == page_of_news.number %}{#判断是否当前 是则高亮 #}
+                {% if page_num == curr_page_obj.number %}{#判断是否当前 是则高亮 #}
                 <li class="active"><a href="?page={{page_num}}">{{page_num}} </a></li>
                 {% else %}
                 {% if page_num == '...' %}
@@ -52,8 +52,8 @@
                 {% endif %}
                 {% endfor %}
                 <li>{#是否有下一页#}
-                    {% if page_of_news.has_next %}
-                    <a href = "?page={{ page_of_news.next_page_number }}"  aria-label="Next">
+                    {% if curr_page_obj.has_next %}
+                    <a href = "?page={{ curr_page_obj.next_page_number }}"  aria-label="Next">
                         <span aria-hidden="true">&raquo;</span>
                     </a>
                     {% else %} {#没有分页不可点击#}
@@ -62,7 +62,7 @@
                 {% endif %}
             </ul>
             <p align="center">
-                共有{{ page_of_news.paginator.count }}条信息，当前第{{ page_of_news.number  }}页，共{{ page_of_news.paginator.num_pages }}页
+                共有{{ curr_page_obj.paginator.count }}条信息，当前第{{ curr_page_obj.number  }}页，共{{ curr_page_obj.paginator.num_pages }}页
             </p>
         </div><br><br><br>
     </table>

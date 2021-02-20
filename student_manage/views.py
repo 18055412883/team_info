@@ -3,7 +3,6 @@ from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 
 from Team_info_manage.common import g_operate_log, paginatorHandle
 from .models import student_info
-from Team_info_manage import forms
 
 def stulist(request):
     stu_list = student_info.objects.all()

@@ -17,7 +17,7 @@
             <div class="form-column-loca">
                 <div id="result" class="form-column-pic" style="height:155px;width:95px"></div>
                 <center>
-                    <label for="pic">
+                    <label for="tch_pic">
                     <input style="width:75px;font-size:13px" type="file" name="tch_pic" id="照片" multiple="multiple" accept="image/*" onchange="ProcessFile(this)"/>
                     </label>
                 </center>
@@ -29,7 +29,7 @@
                     </td>
                     <td>
                         <span style="color: red;float: left;margin-left: 4px;line-height: 28px;font-weight: bold;font-size: 16px;">*&nbsp;&nbsp;</span>
-                        <label for="name">
+                        <label for="tch_nam">
                         <input class="form-control" type="text" placeholder="请输入汉字或字母！" onblur="limit_letter_chinese(this,'教师姓名')" name="tch_nam" id="教师姓名"  dataType="*" style="width:200px;"/>
                         </label>
                         <div class="error-msg info"></div>
@@ -40,7 +40,7 @@
                         &nbsp;&nbsp;&nbsp;性&nbsp;&nbsp;别&nbsp;&nbsp;&nbsp;
                     </td>
                     <td>
-                        <label for="sex">
+                        <label for="tch_sex">
                         <input type = "radio" name="tch_sex" id="性别"value="m" checked="checked">&nbsp;&nbsp;male&nbsp;&nbsp;
                         <input type = "radio" name="tch_sex" id="性别"value="f">&nbsp;&nbsp;female
                         </label>
@@ -53,7 +53,7 @@
                     </td>
                     <td>
                         <span style="color: red;float: left;margin-left: 4px;line-height: 28px;font-weight: bold;font-size: 16px;">*&nbsp;&nbsp;</span>
-                        <label for="tel">
+                        <label for="tch_tel">
                         <input class="form-control" type="text"  placeholder="请填写8位或11位电话号码" onblur="limit_tel(this,'电话')" name="tch_tel" id="电话" value="" dataType="*" style="width:200px;"/>
                         </label>
 
@@ -66,7 +66,7 @@
                     </td>
                     <td>
                         <span style="color: red;float: left;margin-left: 4px;line-height: 28px;font-weight: bold;font-size: 16px;">*&nbsp;&nbsp;</span>
-                        <label for="nation">
+                        <label for="tch_nation">
                         <input class="form-control" type="text" onblur="limit_letter_chinese_length(this,20,'民族')" name="tch_nation" id="民族" value="" dataType="*" style="width:200px;"/>
                         </label>
 
@@ -79,7 +79,7 @@
                     </td>
                     <td>
                         <span style="color: red;float: left;margin-left: 4px;line-height: 28px;font-weight: bold;font-size: 16px;">*&nbsp;&nbsp;</span>
-                        <label for="bpl">
+                        <label for="tch_bpl">
                         <input class="form-control" type="text" onblur="limit_letter_chinese_length(this,50,'籍贯')" name="tch_bpl" id="籍贯" value="" dataType="*" style="width:200px;"/>
                         </label>
 
@@ -92,7 +92,7 @@
                     </td>
                     <td>
                         <span style="color: red;float: left;margin-left: 4px;line-height: 28px;font-weight: bold;font-size: 16px;">*&nbsp;&nbsp;</span>
-                        <label for="sch">
+                        <label for="tch_sch">
                         <input class="form-control" type="text" onblur="limit_letter_chinese_length(this,20,'学校名称')"  name="tch_sch" id="学校名称" value="" dataType="*" style="width:200px;"/>
                         </label>
 
@@ -105,7 +105,7 @@
                     </td>
                     <td>
                         <span style="color: red;float: left;margin-left: 4px;line-height: 28px;font-weight: bold;font-size: 16px;">*&nbsp;&nbsp;</span>
-                        <label for="ins">
+                        <label for="tch_ins">
                         <input class="form-control" type="text" onblur="limit_letter_chinese_length(this,20,'学院')"  name="tch_ins" id="tch_ins" value="" dataType="*" style="width:200px;"/>
                         </label>
 
@@ -118,7 +118,7 @@
                     </td>
                     <td>
                         <span style="color:red;float:left;margin-left:4px;line-height:28px;font-weight:bold;font-size:16px;">*&nbsp;&nbsp;</span>
-                        <label for="adr">
+                        <label for="tch_adr">
                         <input class="form-control" type="text" onblur="limit_length(this,50,'地址')"  name="tch_adr" id="tch_adr" value="" dataType="*" style="width:200px;"/>
                         </label>
 
@@ -131,7 +131,7 @@
                     </td>
                     <td>
                         <span style="color:red;float:left;margin-left:4px;line-height:28px;font-weight:bold;font-size:16px;">*&nbsp;&nbsp;</span>
-                        <label for="post">
+                        <label for="tch_post">
                         <input class="form-control" type="text" placeholder="请输入6位数字的邮政编码" onblur="limit_number_length(this,6,6,'邮政编码')"  name="tch_post" id="tch_pC" value="" dataType="*" style="width:200px;"/>
                         </label>
 
@@ -144,7 +144,7 @@
                     </td>
                     <td>
                         <span style="color: red;float: left;margin-left: 4px;line-height: 28px;font-weight: bold;font-size: 16px;">*&nbsp;&nbsp;</span>
-                        <label for="ema">
+                        <label for="tch_ema">
                         <input class="form-control" type="text" onblur="limit_email(this,'邮箱')" name="tch_ema" id="邮箱" value="" dataType="*" style="width:200px;"/>
                         </label>
 
@@ -157,7 +157,7 @@
                     </td>
                     <td>
                         <span style="color: red;float: left;margin-left: 4px;line-height: 28px;font-weight: bold;font-size: 16px;">*&nbsp;&nbsp;</span>
-                        <label for="page">
+                        <label for="self_page">
                         <input class="form-control" type="text"  name="self_page" id="个人主页" value="无" dataType="*" style="width:200px;"/>
                         </label>
                         <div class="error-msg info"></div>
@@ -168,7 +168,7 @@
                         &nbsp;&nbsp;&nbsp;身&nbsp;&nbsp;份&nbsp;&nbsp;&nbsp;
                     </td>
                     <td>
-                        <label for="iden">
+                        <label for="tch_iden">
                         <input type = "radio" name="tch_iden" id="身份" value="教师" checked="checked">&nbsp;&nbsp;教授&nbsp;&nbsp;
                         <input type = "radio" name="tch_iden" id="身份" value="副教授" >&nbsp;&nbsp;副教授&nbsp;&nbsp;
                         <input type = "radio" name="tch_iden" id="身份" value="讲师" >&nbsp;&nbsp;讲师
@@ -184,7 +184,7 @@
                         <div class="input-group">
                             <div class="input-icon-group">
                                 <div class="input-group" style="width:100%">
-                                    <label for="career">
+                                    <label for="tch_career">
                                     <input class="form-control" placeholder="选择日期" type="text" name="tch_career" id ='入职年份' class="Wdate" onclick="WdatePicker({dateFmt:'yyyy'})" style="width:186px;cursor:hand"/>
                                     </label>{{ form_obj.tch_career }}{{ form_obj.tch_career.errors.0 }}
 
@@ -199,9 +199,9 @@
                         教学经历
                     </td>
                     <td>
-                        <label for="edu"></label>
+                        <label for="tch_edu">
                         <textarea class="form-control" name="tch_edu" id="教学经历"style="width:500px;height:150px;"></textarea>
-
+                        </label>
 
                     </td>
                 </tr>
@@ -210,9 +210,9 @@
                         工作经历
                     </td>
                     <td>
-                        <label for="exp"></label>
+                        <label for="tch_exp">
                         <textarea class="form-control" name="tch_exp" id="工作经历"style="width:500px;height:150px;"></textarea>
-
+                        </label>
 
                     </td>
                 </tr>
@@ -221,9 +221,9 @@
                         学术任职
                     </td>
                     <td>
-                        <label for="aca"></label>
+                        <label for="tch_aca">
                         <textarea class="form-control" name="tch_aca" id="学术任职"style="width:500px;height:150px;"></textarea>
-
+                        </label>
 
                     </td>
                 </tr>
@@ -232,9 +232,9 @@
                         荣誉获奖
                     </td>
                     <td>
-                        <label for="honr"></label>
+                        <label for="tch_honr">
                         <textarea class="form-control" name="tch_honr" id="荣誉称号"style="width:500px;height:150px;"></textarea>
-
+                        </label>
 
                     </td>
                 </tr>
@@ -243,9 +243,9 @@
                         个人简介
                     </td>
                     <td>
-                        <label for="intro"></label>
+                        <label for="tch_intro">
                         <textarea class="form-control" name="tch_intro" id="个人简介"style="width:500px;height:150px;"></textarea>
-
+                        </label>
 
                     </td>
                 </tr>

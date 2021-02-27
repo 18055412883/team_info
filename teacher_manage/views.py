@@ -22,7 +22,7 @@ def teacher_add(request):
             form_obj.tch_pwd = "123456"
             form_obj.status = StateMap.TO_BE_RELEASED
 
-            form_obj.save()
+            form_obj.save(force_insert=True, using="default")
             return WreshResponse.json_response(status=HttpResp.OK, msg="添加成功")
         else:
             return WreshResponse.json_response(status=HttpResp.ERROR, msg="添加失败")

@@ -30,6 +30,7 @@ class WreshResponse:
             paginator = Paginator(data_list, show_count)
             curr_page_obj = paginator.get_page(curr_page_num)  # 获取当前页码所需要的文章列表 相当于一个容器
             # 获取当前页码
+            curr_page_num = curr_page_obj.number
             # 获取前后各页
             page_range = list(range(max(curr_page_num - 2, 1), curr_page_num))
             page_range.extend(list(range(curr_page_num, min(curr_page_num + 2, paginator.num_pages) + 1)))

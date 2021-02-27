@@ -18,9 +18,9 @@
             <div class="form-column-loca">
                 <div id="result" class="form-column-pic" style="height:155px;width:95px"></div>
                 <center>
-                    <label for="stu_pic">
+
                     <input style="width:75px;font-size:13px" type="file" name="stu_pic" id="照片" multiple="multiple" accept="image/*" onchange="ProcessFile(this)"/>
-                    </label>
+
                 </center>
             </div>
             <table class="table table-condensed" cellpadding="1" cellspacing="1" border="0">
@@ -30,9 +30,9 @@
                     </td>
                     <td>
                         <span style="color: red;float: left;margin-left: 4px;line-height: 28px;font-weight: bold;font-size: 16px;">*&nbsp;&nbsp;</span>
-                        <label for="stu_name">
+
                         <input class="form-control" placeholder="请输入由汉字、字母组成的学生姓名" onblur="limit_letter_chinese(this,'学生姓名')" type="text" name="stu_name" id="stu_name" value="" dataType="*" style="width:200px;"/>
-                        </label>
+
                         <div class="error-msg info"></div>
                     </td>
                 </tr>
@@ -42,9 +42,9 @@
                     </td>
                     <td>
                         <span style="color: red;float: left;margin-left: 4px;line-height: 28px;font-weight: bold;font-size: 16px;">*&nbsp;&nbsp;</span>
-                        <label for="stu_id">
+
                         <input class="form-control" placeholder="请输入8到15位的学工号" onblur="limit_number_length(this,8,15,'帐号')" type="text" name="stu_id" id="stu_id" value="" dataType="*" style="width:200px;"/>
-                        </label>
+
                         <div class="error-msg info"></div>
                     </td>
 
@@ -54,10 +54,10 @@
                         &nbsp;&nbsp;&nbsp;性&nbsp;&nbsp;别&nbsp;&nbsp;&nbsp;
                     </td>
                     <td>
-                        <label for="stu_sex">
+
                         <input type = "radio" name="stu_sex" value="m" checked="checked">&nbsp;&nbsp;男&nbsp;&nbsp;
                         <input type = "radio" name="stu_sex" value="f">&nbsp;&nbsp;女
-                        </label>
+
                     </td>
                 </tr>
                 <tr>
@@ -65,11 +65,11 @@
                         &nbsp;&nbsp;&nbsp;学&nbsp;&nbsp;历&nbsp;&nbsp;&nbsp;
                     </td>
                     <td>
-                        <label for="stu_iden">
+
                         <input type = "radio" name="stu_iden" value="0" checked="checked">&nbsp;&nbsp;硕士&nbsp;&nbsp;
                         <input type = "radio" name="stu_iden" value="1" >&nbsp;&nbsp;博士&nbsp;&nbsp;
                         <input type = "radio" name="stu_iden" value="2" >&nbsp;&nbsp;博士后
-                        </label>
+
                     </td>
                 </tr>
                 <tr>
@@ -77,9 +77,9 @@
                         个人简介
                     </td>
                     <td>
-                        <label for="stu_intro">
-                        <textarea class="form-control" name="intro" id="stu_intro"style="width:500px;height:150px;"></textarea>
-                        </label>
+
+                        <textarea class="form-control" name="stu_intro" id="stu_intro"style="width:500px;height:150px;"></textarea>
+
                     </td>
                 </tr>
                 <tr>
@@ -112,21 +112,27 @@
             type: 'post',
             data: {
                 csrfmiddlewaretoken: $("[name='csrfmiddlewaretoken']").val(),
+                stu_pic: $('[name="stu_pic"]').val(),
                 stu_name: $('[name="stu_name"]').val(),
                 stu_id: $('[name="stu_id"]').val(),
                 stu_sex: $('[name="stu_sex"]').val(),
                 stu_iden: $('[name="stu_iden"]').val(),
-                stu_pic: $('[name="stu_pic"]').val(),
                 stu_intro: $('[name="stu_intro"]').val()
             },
-            async: false,
-            status: 200,
-            success: function () {
-                alert('添加成功')
-                window.location = '/student_manage/stu_add/'
+            async: "false",
+            dataType: "JSON",
+            success: function (response) {
+                if(response['status']){
+                    alert("添加成功");
+                    window.location = '/student_manage/stu_add/'
+                }
+                else{
+                    alert("添加失败");
+                }
+
             }
-        })
-    })
+        });
+    });
 
 </script>
 

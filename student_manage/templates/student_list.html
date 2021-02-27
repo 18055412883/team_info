@@ -13,7 +13,7 @@
             <li class="active">学生列表</li>
         </ol>
         <table class="table table-condensed">
-            {% for stu in news %}
+            {% for stu in curr_page_obj %}
             <tr>
                 <td style="width:700px;height:30px;">
                     <a href="javascript:void(0);" target="_blank">
@@ -25,10 +25,10 @@
                     </a>
                 </td>
                 <td>
-                    <h3><a href="/teacher_manage/stu_draft/{{ stu.id }}"><button class="btn btn-primary">修改</button></a></h3>
+                    <h3><a href="/teacher_manage/stu_draft/{{ stu.stu_id }}"><button class="btn btn-primary">修改</button></a></h3>
                 </td>
                 <td>
-                    <h3><a href="javascript:void(0);" onclick="del_team_info('stu',{{ stu.id }})"><button class="btn btn-danger">删除</button></a></h3>
+                    <h3><a href="javascript:void(0);" onclick="del_team_info('stu',{{ stu.stu_id }})"><button class="btn btn-danger">删除</button></a></h3>
                 </td>
             </tr>
             {% endfor %}
@@ -36,8 +36,8 @@
         <div class="paginator" align="center">
             <ul class="pagination">
                 <li>
-                    {% if page_of_news.has_previous %}{# 是否有上一页 #}
-                    <a href = "?page={{ page_of_news.previous_page_number }}" aria-label="Previous">
+                    {% if curr_page_obj.has_previous %}{# 是否有上一页 #}
+                    <a href = "?page={{ curr_page_obj.previous_page_number }}" aria-label="Previous">
                         <span aria-hidden="true"> &laquo; </span></a>
                     {% else %}
                 </li>
@@ -56,8 +56,8 @@
                 {% endif %}
                 {% endfor %}
                 <li>{#是否有下一页#}
-                    {% if page_of_news.has_next %}
-                    <a href = "?page={{ page_of_news.next_page_number }}"  aria-label="Next">
+                    {% if curr_page_obj.has_next %}
+                    <a href = "?page={{ curr_page_obj.next_page_number }}"  aria-label="Next">
                         <span aria-hidden="true">&raquo;</span>
                     </a>
                     {% else %} {#没有分页不可点击#}
@@ -66,7 +66,7 @@
                 {% endif %}
             </ul>
             <p align="center">
-                共有{{ page_of_news.paginator.count }}条信息，当前第{{ page_of_news.number  }}页，共{{ page_of_news.paginator.num_pages }}页
+                共有{{ curr_page_obj.paginator.count }}条信息，当前第{{ curr_page_obj.number  }}页，共{{ curr_page_obj.paginator.num_pages }}页
             </p>
         </div><br><br><br>
     </table>

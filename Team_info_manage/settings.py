@@ -40,6 +40,10 @@ INSTALLED_APPS = [
     'Team_info_manage',
     'teacher_manage',
     'student_manage',
+    'news',
+    'announcement',
+    'support',
+    'thesis',
 ]
 
 MIDDLEWARE = [
@@ -139,4 +143,4 @@ STATICFILES_DIRS = [
 
 HAYSTACK_SEARCH_RESULTS_PER_PAGE = 5  #每五项结果为一页
 HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'  #什么时候更新索引,
-TeacherNum = 0
+

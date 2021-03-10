@@ -1,0 +1,89 @@
+{% extends "new_template.html" %}
+{% block content2 %}
+<div class="col-lg-9 col-md-9" style="background-color: white; min-height: 500px; padding: 20px;">
+    <table class="table table-condensed">
+        <ol class="breadcrumb">
+            <li>当前位置</li>
+            <li class="active">添加公告</li>
+        </ol>
+            <form onsubmit="return false" id="announce_form">
+                {% csrf_token %}
+                <table class="table table-condensed" cellpadding="1" cellspacing="1" border="0">
+                    <tr>
+                        <td class="form-column-header">
+                            标题：<span style="color: red;font-weight: bold;font-size: 16px;">*</span>
+                        </td>
+                        <td>
+                            <!-- 系统默认标签，这里根据字段名称来设置每一项的样式和默认值 -->
+                            <!-- 标题 -->
+                            <input class="form-control" type="text" name="title" id="标题" value="" dataType="*" style="width:80%;"/>
+                            <div class="error-msg info"></div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="form-column-header">
+                            撰稿人：
+                        </td>
+                        <td>
+                            <!-- 系统默认标签，这里根据字段名称来设置每一项的样式和默认值 -->
+                            <input class="form-control" type="text" onblur="limit_letter_chinese(this,'撰稿人')" name="author" id="作者" value="" style="width:186px;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="form-column-header">
+                            发布时间：
+                        </td>
+                        <td>
+
+                            <div class="input-group">
+                            <div class="input-icon-group">
+                                <div class="input-group" style="width:100%">
+                                    <!-- 发布时间 -->
+                                    <input class="form-control" type="text" name="enterTime" id='发布时间' class="Wdate" \
+                                           onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" value="" style="width:186px;" style="cursor:hand"/>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="form-column-header">
+                            来源：
+                        </td>
+                        <td>
+                            <input class="form-control" onblur="limit_url(this,'来源链接')" type="text" name="origin" id="来源" value="" style="width:186px;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="form-column-header">公告内容：</td>
+                        <td>
+                            <textarea name="content" id="正文内容" style="width:540px;height:500px;" required></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                        <center><span class="col-md-2 col-xs-12"><button class="btn btn-primary btn-group-vertical" style="width:80px" name="btn_sub1" id="btn1" type="button" onclick="if(limit_check_ann_editor()) return sub_announce_editor(1)">
+                            提交
+                        </button>
+                        </span>
+                        <span class="col-md-3 col-xs-12"><button class="btn btn-warning" style="width:120px" name="btn_sub2" type="button" onclick="return sub_announce_editor(0)">
+                            保存到草稿箱
+                        </button>
+                        </span>
+                        <span class="col-md-2 col-xs-12"><a id="backBtn" class="btn btn-default" style="width:80px"  href="javascript:history.go(-1)">
+                            返回
+                        </a></span></center>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+    </table>
+</div>
+<script rel="stylesheet" type="text/javascript" src="{% static 'editor/kindeditor/kindeditor.js'%}"></script>
+<script rel="stylesheet" type="text/javascript" src="{% static 'js/kindeditor.js'%}"></script>
+<script rel="stylesheet" type="text/javascript" src="{% static 'js/announcement.js' %}"></script>
+{% endblock content2 %}

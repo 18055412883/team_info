@@ -1,0 +1,58 @@
+{% extends 'new_template.html' %}
+{% block content2 %}
+
+<div class="col-lg-9 col-md-9" style="background-color: white; min-height: 500px; padding: 20px;">
+    <table class="table table-condensed">
+        <ol class="breadcrumb">
+            <li>当前位置</li>
+            <li class="active">添加支持平台</li>
+        </ol>
+        <form  id="support_form">
+            {% csrf_token %}
+            <table class="table table-condensed" cellpadding="1" cellspacing="1" border="0">
+                <tr>
+                    <td class="form-column-header">
+                        支持平台类型
+                    </td>
+                    <td>
+                        <select class="form-control" style="width:186px" name="belongName" id="type" dataType="*" >
+                            <option value="=选择项目类型=">=选择平台类型=</option>
+                            <option value="0" >国家重点实验室</option>
+                            <option value="1" >教学名师</option>
+                            <option value="2">省部级重点实验室</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-column-header">请输入平台名称</td>
+                    <td>
+                        <input class="form-control" onblur="limit_length(this,30,'平台名称')" type="text" name="name" id ="平台名称" value="" style="width:186px;"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-column-header">请输入链接</td>
+                    <td>
+                        <input class="form-control" type="text" onblur="limit_url(this,'链接')" name="URL" id ="链接" value="" style="width:186px;"/>
+                    </td>
+                <tr>
+                    <td class="form-column-header">正文内容：</td>
+                    <td>
+                        <textarea name="content" id="正文内容" style="width:540px;height:300px;"required></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" onclick="if(limit_check_support_editor()) return sub_support(checkForm(),'t')" name="btn_sub1" class="btn btn-primary btn-group-vertical" style="width:80px">提交</button>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<a id="backBtn" class="btn btn-default" style="width:80px" href="javascript:history.go(-1)">返回</a>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </table>
+</div>
+<script rel="stylesheet" type="text/javascript" src="{% static 'editor/kindeditor/kindeditor.js'%}"></script>
+<script rel="stylesheet" type="text/javascript" src="{% static 'js/kindeditor.js'%}"></script>
+<script type="text/javascript" src="{% static 'js/support.js' %}"></script>
+
+{% endblock content2 %}

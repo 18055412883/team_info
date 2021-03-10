@@ -1,0 +1,122 @@
+{% extends 'manage_template.html' %}
+
+{% block news_mg %}
+    active
+{% endblock news_mg %}
+
+{% block content1 %}
+<nav class="nav navbar-default" id="dir_bar" style="width: 100%">
+    <div class="navbar-header">
+         <a href="#" class="navbar-brand" >菜单</a>
+
+        <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#dir_support">
+            支 持 平 台   <span class="caret"></span>
+        </button>
+
+        <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#dir_ann">
+            最 新 公 告   <span class="caret"></span>
+        </button>
+        <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#dir_news">
+            最 新 新 闻     <span class="caret"></span>
+        </button>
+    </div>
+    <div class="collapse navbar-collapse" id="dir_news">
+        <ul class="nav nav-tabs nav-justified">
+            <li><a href="/news_manage/news_edit/" style="color:purple;font-size:18px;font-family:微软雅黑;font-weight: bold;">添 加 新 闻</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/news_manage/news_draft_list/" style="color:purple;font-size:18px;font-family:微软雅黑;font-weight: bold;">草 稿 箱</a></li>
+            <li role="separator" class="divider"></li>
+                <li><a href="javascript:;" style="color:purple;font-size:18px;font-family:微软雅黑;font-weight: bold;" onclick="show_my_affairs('/news/tch_affairs/')">与我相关</a></li>
+                <li><a href="/news_manage/news_list/" style="color:purple;font-size:18px;font-family:微软雅黑;font-weight: bold;">新 闻 列 表</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="/news_manage/news_review/" style="color:purple;font-size:18px;font-family:微软雅黑;font-weight: bold;">待 审 核</a></li>
+
+        </ul>
+    </div>
+    <div class="collapse navbar-collapse" id="dir_ann">
+        <ul class="nav nav-tabs nav-justified">
+            <li><a href="/announce/announcement_editor/" style="color:purple;font-size:18px;font-family:微软雅黑;font-weight: bold;">添 加 公 告</a></li>
+            <li><a href="/announce/announcement_draft_list/" style="color:purple;font-size:18px;font-family:微软雅黑;font-weight: bold;" >草 稿 箱</a></li>
+
+                <li><a href="javascript:;" style="color:#c171cd" onclick="show_my_affairs('/announce/tch_affairs/')">与 我 相 关</a></li>
+
+                <li><a href="/announce/announcement_manage_list/" style="color:purple;font-size:18px;font-family:微软雅黑;font-weight: bold;" >公 告 列 表</a></li>
+                <li><a href="/announce/announcement_review_list/" style="color:purple;font-size:18px;font-family:微软雅黑;font-weight: bold;" >待 审 核</a></li>
+
+        </ul>
+    </div>
+
+    <div class="collapse navbar-collapse" id="dir_support">
+        <ul class="nav nav-tabs nav-justified">
+            <li><a href="/support/support_editor/" style="color:purple;font-size:18px;font-family:微软雅黑;font-weight: bold;"><center>添 加 平 台</center></a></li>
+
+            <li role="separator" class="divider"></li>
+            <li><a href="/support/look_support/" style="color:purple;font-size:18px;font-family:微软雅黑;font-weight: bold;"><center>平 台 列 表</center></a></li>
+
+        </ul>
+    </div>
+</nav>
+<div id="dir">
+    <div class="col-lg-2 col-md-3" style="min-height: 500px;">
+        <div class="btn-group">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="height:42px;width:163.167px;background-color:#c171cd;border-color:#c171cd">
+                最 新 新 闻     <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" style="width:163.167px">
+                <li><a href="/news_manage/news_edit/" style="color:#c171cd"><center>添 加 新 闻</center></a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="/news_manage/news_draft_list/" style="color:#c171cd"><center>草 稿 箱</center></a></li>
+                <li role="separator" class="divider"></li>
+                {% comment %}
+                <li><a href="javascript:;" style="color:#c171cd" onclick="show_my_affairs('/news/tch_affairs/')"><center>与我相关</center></a></li>
+                {% endcomment %}
+                <li><a href="/news_manage/news_list/" style="color:#c171cd"><center>新 闻 列 表</center></a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="/news_manage/news_review/" style="color:#c171cd"><center>待 审 核</center></a></li>
+
+            </ul>
+        </div>
+        <br><br>
+        <div class="btn-group">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="height:42px;width:163.167px;background-color:#c171cd;border-color:#c171cd">
+                最 新 公 告     <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" style="width:163.167px">
+                <li><a href="/announce/announcement_edit/" style="color:#c171cd"><center>添 加 公 告</center></a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="/announce/announcement_draft_list/" style="color:#c171cd"><center>草 稿 箱</center></a></li>
+                <li role="separator" class="divider"></li>
+
+                {% comment %}<li><a href="javascript:;" style="color:#c171cd" onclick="show_my_affairs('/announce/tch_affairs/')"><center>与我相关</center></a></li>
+                {% endcomment %}
+                <li><a href="/announce/announcement_list/" style="color:#c171cd"><center>公 告 列 表</center></a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="/announce/announcement_review/" style="color:#c171cd"><center>待 审 核</center></a></li>
+
+            </ul>
+        </div><br><br>
+
+        <div class="btn-group">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="height:42px;width:163.167px;background-color:#c171cd;border-color:#c171cd">
+                支 持 平 台     <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" style="width:163.167px">
+                <li><a href="/support/support_edit/" style="color:#c171cd"><center>添 加 平 台</center></a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="/support/support_list/" style="color:#c171cd"><center>平 台 列 表</center></a></li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+    {% block content2 %}
+
+    {% endblock content2 %}
+<script rel="stylesheet" type="text/javascript" src="{% static 'editor/kindeditor/kindeditor.js'%}"></script>
+<script rel="stylesheet" type="text/javascript" src="{% static 'js/kindeditor.js'%}"></script>
+<script type="text/javascript" src="{% static 'js/news.js' %}"></script>
+<script rel="stylesheet" type="text/javascript" src="{% static 'js/support.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/regex.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/checkform.js' %}"></script>
+
+{% endblock content1 %}

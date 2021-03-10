@@ -1,0 +1,73 @@
+{% extends "new_template.html" %}
+{% block content2 %}
+
+<div class="col-lg-9 col-md-9" style="background-color: white; min-height: 500px; padding: 20px;">
+    <table class="table table-condensed">
+        <ol class="breadcrumb">
+            <li>当前位置</li>
+            <li class="active">待审核</li>
+        </ol>
+        <table class="table table-condensed">
+            {% for news in curr_page_obj %}
+            <tr>
+                <td style="width:80%;height: 30px;">
+                    <a href="/news/news_show/{{ news.id }}/" target="_blank">
+                        <h3 style="font-size:17px;color:#000000;max-width:250px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;">{{ news.title }}</h3>
+                    </a>
+                </td>
+                <td><h3><a href="/news/news_change/{{ news.id }}"><button class="btn btn-primary">修改</button></a></h3></td>
+                <td><h3><a href="javascript:void(0);" ><button onclick="dele_new({{ news.id }})"class="btn btn-danger">删除</button></a></h3></td>
+                <td><h3><a href="javascript:void(0);"><button onclick="re_new({{ news.id }})" class="btn btn-info">发布</button></a></h3></td>
+                <!--<td><h3><a href="/news/release_new/{{ news.id }}/"><button class="btn btn-info">发布</button></a></h3></td>-->
+            </tr>
+            {% endfor %}
+        </table>
+        <div class="paginator" align="center">
+            <ul class="pagination">
+                <li>
+                    {% if curr_page_obj.has_previous %}{# 是否有上一页 #}
+                    <a href = "?page={{ curr_page_obj.previous_page_number }}" aria-label="Previous">
+                        <span aria-hidden="true"> &laquo; </span></a>
+                    {% else %}
+                </li>
+                <li class="disabled"><span aria-hidden="true"> &laquo; </span></li>
+                {% endif %}
+                {#全部页码#}
+                {% for page_num in page_range %}
+                {% if page_num == curr_page_obj.number %}{#判断是否当前 是则高亮 #}
+                <li class="active">
+                    <a href="?page={{page_num}}">{{page_num}}</a>
+                </li>
+                {% else %}
+                {% if page_num == '...' %}
+                <li>
+                    <span>{{  page_num  }}</span>
+                </li>
+                {% else %}
+                <li>
+                    <a href="?page={{page_num}}">{{page_num}}</a>
+                </li>
+                {% endif %}
+                {% endif %}
+                {% endfor %}
+                <li>{#是否有下一页#}
+                    {% if curr_page_obj.has_next %}
+                    <a href="?page={{ curr_page_obj.next_page_number }}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                    {% else %} {#没有分页不可点击#}
+                </li>
+                <li class="disabled">
+                    <span aria-hidden="true" >&raquo;</span>
+                </li>
+                {% endif %}
+            </ul>
+            <p align="center">
+                共有{{ curr_page_obj.paginator.count }}条新闻，当前第{{ curr_page_obj.number  }}页，共{{ curr_page_obj.paginator.num_pages }}页
+            </p>
+        </div><br><br><br>
+    </table>
+</div>
+
+
+{% endblock content2 %}

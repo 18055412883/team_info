@@ -17,7 +17,7 @@ class teacher_info(models.Model):
     tch_adr = models.CharField(max_length=255, null=True)
     tch_post = models.CharField(max_length=20, null=True)
     tch_ema = models.EmailField(max_length=255, null=True)
-    self_page =models.CharField(max_length=30, null=True)
+    self_page = models.CharField(max_length=30, null=True)
     tch_pic = models.ImageField(upload_to='img', null=True)
     tch_iden = models.CharField(max_length=20, null=True)
     tch_career = models.CharField(null=True, max_length=4)
@@ -26,7 +26,7 @@ class teacher_info(models.Model):
     tch_exp = models.TextField(null=True)
     tch_aca = models.TextField(null=True)
     tch_honr = models.TextField(null=True)
-    tch_pwd = models.CharField(max_length=255,default="123456")
+    tch_pwd = models.CharField(max_length=255, default="123456")
     status = models.IntegerField()
 
 

@@ -4,7 +4,25 @@
 {% endblock info_mg %}
 
 {% block content1 %}
-    <div class="part1">
+<style>
+    .form-column-loca{
+        margin: 1.5%;
+        position:absolute; top:12.4%; z-index:11;
+        left: 70%;
+    }
+    .form-column-header{
+        margin-top: 1%;
+         }
+    .form-column-pic{
+        width: 90px;
+        height: 150px;
+        border: solid;
+        background-color: white;
+        border-color: #989898;
+    }
+</style>
+
+
     <div id="dir">
     <div class="col-lg-2 col-md-3" style="height: auto;">
         <div class="list-group">
@@ -17,4 +35,11 @@
         </div>
     </div>
     </div>
+    {% block content2 %}
+
+        {% endblock content2 %}
+<script rel="stylesheet" type="text/javascript" src="{% static 'js/team_info.js'%}"></script>
+<script type="text/javascript" src="{% static 'js/regex.js' %}"></script>
+<script rel="stylesheet" type="text/javascript" src="{% static 'My97DatePicker/WdatePicker.js'%}"></script>
+<script rel="stylesheet" type="text/javascript" src="{% static 'js/checkform.js'%}"></script>
 {% endblock content1 %}

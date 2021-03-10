@@ -1,0 +1,132 @@
+{% extends 'manage_template.html' %}
+{% block aca_mg %}
+    active
+{% endblock aca_mg %}
+
+{% block content1 %}
+{% load static %}
+	<link href="{% static 'css/list.css'%}"  type="text/css" rel="stylesheet">
+	<link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" />
+	<link href="{% static 'css/buttons.css'%}" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/smartUI.css'%}"  />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/jbox.css'%}"/>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/jquery-ui.css'%}" />
+    <script type="text/javascript" src="{% static 'js/regex.js' %}"></script>
+	<style>
+			.jumbotron {
+				background: linear-gradient(45deg, #66327C 0, #B481BB 90%);
+				color: white;
+				padding-top: 45px;
+				padding-bottom: 45px;
+			}
+			.navbar {
+				margin-bottom: 0px;
+			}
+		</style>
+	<style>
+    input:focus{
+        border-style: solid;
+         border-color: #00c9fe;
+        box-shadow: 0 0 15px #00c9fe;
+    }
+    textarea:focus{
+        border-style: solid;
+         border-color: #00c9fe;
+        box-shadow: 0 0 15px #00c9fe;
+    }
+    input[type="file"]{
+         color: transparent;
+         width: 75px;
+         font-size: 15px;
+        border-style: none;
+    }
+    input[type="radio"]{
+        width: 10px;
+        height: 10px;
+        display: inline-block;
+    }
+
+    .form-column-outside {
+        margin:0 auto;
+        width: 80%;
+        border-style: none solid;
+        border-width: 3px;
+        border-color: #989898;
+    }
+    .form-column-footer{
+        margin: 50px;
+    }
+    .hr_style{
+        color: #989898;
+        border: 5px solid #989898;
+    }
+    </style>
+	<style>
+    .list-group-item.active a:hover{
+        background-color:purple;
+    }
+    .form-column-loca{
+        margin: 1.5%;
+        position:absolute; top:12.4%; z-index:11;
+        left: 70%;
+    }
+    .form-column-header{
+        margin-top: 1%;
+         }
+    .form-column-pic{
+        width: 90px;
+        height: 150px;
+        border: solid;
+        background-color: white;
+        border-color: #989898;
+    }
+</style>
+
+	<script language="JavaScript" type="text/javascript" src="../../static/My97DatePicker/WdatePicker.js"></script>
+
+    <nav class="nav navbar-default" id="dir_bar" style="width: 100%">
+        <div class="navbar-header">
+            <a href="#" class="navbar-brand" >菜单</a>
+            <button class="navbar-toggle collapsed" data-toggle="collapse" id="dir_btn"  data-target="#dir_span">
+                <span class="glyphicon glyphicon-align-justify" ></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="dir_span">
+            <ul class="nav nav-tabs nav-justified">
+					<li role="presentation" ><a href="/thesis/thesis_edit/" style="color:purple;font-size:18px;font-family:微软雅黑;font-weight: bold;">添加教学成果</a></li>
+					<li role="presentation" ><a href="" style="color:purple;font-size:18px;font-family:微软雅黑;font-weight: bold;">草 稿 箱</a></li>
+				{% comment %}{% if request.session.iden == 'teacher' %}
+					<li role="presentation" ><a href="javascript:;" style="color:purple;font-size:18px;font-family:微软雅黑;font-weight: bold;"onclick="show_my_affairs('/thesis/tch_affairs/')">与我相关</a></li>
+                {% endif %}
+                {% endcomment %}
+
+					<li role="presentation" ><a href=""style="color:purple;font-size:18px;font-family:微软雅黑;font-weight: bold;">教学成果列表</a></li>
+					<li role="presentation" ><a href="" style="color:purple;font-size:18px;font-family:微软雅黑;font-weight: bold;">待 审 核</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="dir">
+	<div class="col-lg-2 col-md-3" style="min-height: 500px;">
+		<div class="list-group">
+			<center>
+				<a href="/thesis/addThesis_editor/" class="{% block add_thesis %}list-group-item{% endblock add_thesis %}" id ="addThesis_editor" style="font-weight:bold;">添加教学成果</a>
+				<a href="/thesis/thesis_draft_list/" class="{% block draft_thesis %}list-group-item{% endblock draft_thesis %}" id="thesis_draft_list" style="font-weight:bold;">草 稿 箱</a>
+				{% comment %}{% if request.session.iden == 'teacher' %}
+                <a href="javascript:;" class="list-group-item" id="tch_affairs"onclick="show_my_affairs('/thesis/tch_affairs/')" style="font-weight:bold;">与我相关</a>
+                {% endif %}
+                {% endcomment %}
+
+				<a href="/thesis/Thesis_manage_list/"class="{% block thesis_list %}list-group-item{% endblock thesis_list %}" id="Thesis_manage_list" style="font-weight:bold;">教学成果列表</a>
+				<a href="/thesis/thesis_review_list/" class="{% block check_thesis %}list-group-item{% endblock check_thesis %}" id="thesis_review_list" style="font-weight:bold;">待 审 核</a>
+
+			</center>
+		</div>
+	</div>
+	</div>
+
+    {% block content2 %}
+
+        {% endblock content2 %}
+
+{% endblock %}

@@ -1,0 +1,123 @@
+{% extends 'thesis_template.html' %}
+
+{% block add_thesis %}
+    list-group-item active
+{% endblock add_thesis %}
+{% block content2 %}
+
+<div class="col-lg-9 col-md-9" style="background-color: white; min-height: 500px; padding: 20px;">
+	<table class="table table-condensed">
+		<ol class="breadcrumb">
+			<li>当前位置</li>
+			<li class="active">添加教学成果</li>
+		</ol>
+		<form onsubmit="return false">
+			{% csrf_token %}
+			<table class="table table-condensed" cellpadding="1" cellspacing="1" border="0">
+
+				<tr>
+                    <td class="form-column-header">
+                        老师姓名：<span style="color: red;margin-left: 4px;line-height: 28px;font-weight: bold;font-size: 16px;">*&nbsp;&nbsp;</span>
+                    </td>
+                    <td>
+                        <select class="form-control" style="width:186px" onchange="select_tch()" name="paperName" id="tch_type" dataType="*" >
+                            <option value="pass">=选择教师=</option>
+                            {% for value,name in names.items %}
+                            <option value="{{name}}" >{{ value }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+
+				<tr>
+					<td class="form-column-header">
+						类型：
+					</td>
+					<td>
+						<select class="form-control" onchange="select_item()" style="width:186px" name="paperType" id="type" dataType="*">
+							<option value="=选择论文类型=">=选择类型=</option>
+							<option value="0" >教学获奖</option>
+							<option value="1" >教材与论文</option>
+							<option value="2" >教改项目</option>
+						</select>
+					</td>
+				</tr>
+				{% if request.session.iden == 'teacher' %}
+				<input  type="hidden" name="paperName" id="tch_type" value="{{ request.session.name }}">
+				{% endif %}
+				<!--<tr>-->
+					<!--<td class="form-column-header">-->
+						<!--标题：<span style="color: red;margin-left: 4px;line-height: 28px;font-weight: bold;font-size: 16px;">*</span>-->
+					<!--</td>-->
+					<!--<td>-->
+						<!--&lt;!&ndash; 标题 &ndash;&gt;-->
+						<!--<input class="form-control" type="text"  name="paperName" id="标题" value="" dataType="*" style="width:80%;"/>-->
+						<!--<div class="error-msg info"></div>-->
+					<!--</td>-->
+				<!--</tr>-->
+<!--				<tr>-->
+<!--					<td class="form-column-header">-->
+<!--						编码：-->
+<!--					</td>-->
+<!--					<td>-->
+						<!--编码 -->
+<!--				编码暂时没有用，还不能注释，后端要用，所以类型暂时从text 换成 hidden了，value暂时设为null ，后面的一样。-->
+						<input class="form-control" type="hidden" name="paperNo"  id ="编码" value="null" style="width:60%;"/>
+<!--					</td>-->
+<!--				</tr>-->
+<!--				<tr>-->
+<!--					<td class="form-column-header">-->
+<!--						作者：-->
+<!--					</td>-->
+<!--					<td>-->
+						<input class="form-control" type="hidden" maxlength="20" onblur="limit_letter_chinese(this,'作者')" name="personname" id ="作者" value="null" style="width:186px;"/>
+<!--					</td>-->
+<!--				</tr>-->
+				<tr>
+					<td class="form-column-header">
+						发布时间：
+					</td>
+					<td>
+						<div class="input-group">
+							<div class="input-icon-group">
+								<div class="input-group" style="width:100%">
+									<!-- 发布时间 -->
+									<input class="form-control" type="text" name="paperYear" id ="发布时间" class="Wdate" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" value="" style="width:186px;" style="cursor:hand"/>
+									<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+								</div>
+							</div>
+						</div>
+					</td>
+				</tr>
+<!--				<tr>-->
+<!--					<td class="form-column-header">-->
+<!--						原文链接：-->
+<!--					</td>-->
+<!--					<td>-->
+						<input class="form-control" type="hidden" onblur="limit_url(this,'原文链接')" name="original" id ='原文链接' value="null.null.null" style="width:186px;" style="cursor:hand"/>
+<!--					</td>-->
+<!--				</tr>-->
+				<td class="form-column-header">
+					正文内容：
+				</td>
+				<td>
+					<textarea name="thesisAbstract" id="摘要" style="width:80%;height:200px;"></textarea>
+				</td>
+				<tr>
+					<td></td>
+					<td colspan="2">
+						<center><span class="col-md-2 col-xs-12"><button  onclick="return sub_thesis_form(0)" name="btn_sub1" class="btn btn-primary btn-group-vertical" style="width:80px">提交</button>
+						</span><span class="col-md-3 col-xs-12"><button onclick="return sub_thesis_form(1)" name ="btn_sub2" class="btn btn-warning" style="width:120px">保存到草稿箱</button>
+						</span><span class="col-md-2 col-xs-12"><a id="backBtn" class="btn btn-default" style="width:80px" href="javascript:history.go(-1)">返回</a>
+					</span></center>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</table>
+</div>
+<script rel="stylesheet" type="text/javascript" src="{% static 'editor/kindeditor/kindeditor.js'%}"></script>
+<script rel="stylesheet" type="text/javascript" src="{% static 'js/kindeditor.js'%}"></script>
+<script type="text/javascript" src="{% static 'js/thesis.js'%}"></script>
+<script type="text/javascript" src="{% static 'js/pro_the.js' %}"></script>
+{% endblock content2 %}

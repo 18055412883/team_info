@@ -1,0 +1,196 @@
+{% extends 'new_template.html' %}
+
+{% block content2 %}
+
+<div class="col-lg-9 col-md-9" style="background-color: white; min-height: 500px; padding: 20px;">
+    <table class="table table-condensed">
+        <ol class="breadcrumb">
+            <li>当前位置</li>
+            <li class="active">新闻列表</li>
+        </ol>
+        <table class="table table-condensed">
+            {% for news in curr_page_obj %}
+            <tr>
+                <td style="width:80%;height: 30px;">
+                    <a href="/news/news_show/{{ news.id }}/" target="_blank">
+                        <h3 style="font-size:17px;color:#000000;max-width:250px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;">{{ news.title }}</h3>
+                    </a>
+                </td>
+                <td><h3><a href="/news/news_change/{{ news.id }}"><button class="btn btn-primary">修改</button></a></h3></td>
+                <td><h3><a href="javascript:void(0);" onclick="dele_new({{ news.id }})"><button class="btn btn-danger">删除</button></a></h3></td>
+                {% comment %}<td><h3><button class="btn btn-info"  title="图片" unselectable="on" onclick="add_show('news',{{ news.id }})">大图轮播</button></h3></td>
+<!--                <td><h3><a href="/news/show_in_index/new/{{news.id}}/" onclick="return dialog()"><button class="btn btn-info">show</button></a></h3></td>-->
+            {% endcomment %}
+            </tr>
+            {% endfor %}
+
+        </table>
+        <div class="paginator" align="center">
+            <ul class="pagination">
+                <li>
+                    {% if curr_page_obj.has_previous %}{# 是否有上一页 #}
+                    <a href="?page={{ curr_page_obj.previous_page_number }}" aria-label="Previous">
+                        <span aria-hidden="true"> &laquo; </span>
+                    </a>
+                    {% else %}
+                </li>
+                <li class="disabled">
+                    <span aria-hidden="true"> &laquo; </span>
+                </li>
+                {% endif %}
+                {% for page_num in page_range %}
+                {% if page_num == curr_page_obj.number %}
+                <li class="active">
+                    <a href="?page={{page_num}}">{{page_num}}</a>
+                </li>
+                {% else %}
+                {% if page_num == '...' %}
+                <li>
+                    <span>{{  page_num  }}</span>
+                </li>
+                {% else %}
+                <li>
+                    <a href="?page={{page_num}}">{{page_num}}</a>
+                </li>
+                {% endif %}
+                {% endif %}
+                {% endfor %}
+                <li>
+                    {#是否有下一页#}
+                    {% if curr_page_obj.has_next %}
+                    <a href="?page={{ curr_page_obj.next_page_number }}" aria-label="Next">
+                        <span aria-hidden="true"> &raquo; </span>
+                    </a>
+                    {% else %}
+                    {#没有分页不可点击#}
+                </li>
+                <li class="disabled">
+                    <span aria-hidden="true"> &raquo; </span>
+                </li>
+                {% endif %}
+            </ul>
+            <p align="center">
+                共有{{ curr_page_obj.paginator.count }}条新闻，当前第{{ curr_page_obj.number  }}页，共{{ curr_page_obj.paginator.num_pages }}页
+            </p>
+        </div><br><br><br>
+    </table>
+</div>
+{% comment %}
+<div style="display:none;" id = 'dialog'>
+    <div class="ke-dialog-content">
+        <div class="ke-dialog-header">图片
+        <span class="ke-dialog-icon-close" onclick="close_dialog()" title="关闭"></span>
+        </div>
+        <div class="ke-dialog-body" style="height: 205px;">
+        <div style="padding:20px;"><div style="display:block;" class="ke-tabs">
+            <ul class="ke-tabs-ul ke-clearfix">
+                <li class="ke-tabs-li">本地上传</li>
+            </ul>
+        </div>
+            <form id = "show_img" class="ke-upload-area ke-form" method="post" enctype="multipart/form-data" onsubmit="return false">
+               {% csrf_token %}
+                <div class="ke-dialog-row"><label style="width:60px;">上传文件</label>
+                    <input type="text" id="img_path" class="ke-input-text" tabindex="-1" style="width:200px;"  readonly="true"> &nbsp;
+                    <div class="ke-inline-block ke-upload-button">
+                        <div class="ke-upload-area" style="width: 60px;">
+                            <span class="ke-button-common">
+                                <input type="button" class="ke-button-common ke-button" style="width: 60px"  value="浏览...">
+                            </span>
+                            <input type="file" id="select_img" name="select_img" class="ke-upload-file" onchange="set_file()" tabindex="-1">
+                        </div>
+                    </div>
+                </div>
+                <div class="ke-dialog-row"><label style="width:60px;">选择置顶</label>
+                    <label><input type="radio" class="ke-input-text" name="top"  value="yes" checked="checked">是</label>
+                    <label><input type="radio" class="ke-input-text" name="top"  value="no">否</label>
+                </div>
+                <div class="ke-dialog-footer">
+                    <span class="ke-button-common ke-button-outer ke-dialog-yes"  title="确定">
+                        <input class="ke-button-common ke-button" type="button" onclick="show_in(check_image())" value="确定">
+                    </span>
+                    <span class="ke-button-common ke-button-outer ke-dialog-yes" title="取消">
+                        <input class="ke-button-common ke-button" type="button" onclick="close_dialog()" value="取消">
+                    </span>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="ke-dialog-shadow"></div>
+</div>
+</div>
+<div id="shadow" style="display: none;"></div>
+<script>
+function add_show(type,id) {
+    var it = document.getElementById('dialog');
+    var shadow = document.getElementById("shadow");
+    it.className = "ke-dialog-default ke-dialog";
+    it.style = "display: block; width: 450px; height: 300px; position: fixed; z-index: 811213; left: 535px; top: 211px;";
+
+    shadow.className = "ke-dialog-mask";
+    shadow.style = "display: block; width: 100%; height: 100%; position: absolute; left: 0px; top: 0px; z-index: 811212;";
+
+    sessionStorage.setItem('id',id); //通过session传递id参数
+    sessionStorage.setItem('type',type);
+};
+
+function set_file() {
+        var path = document.getElementById("select_img").value;
+        var set_path = document.getElementById('img_path');
+        set_path.value = path.split('\\')[2];
+    };
+
+function close_dialog() {
+    var it = document.getElementById('dialog');
+    var shadow = document.getElementById("shadow");
+    it.style = "display: none;";
+    shadow.style = "display : none;";
+}
+
+function check_image() {
+   var image = document.getElementById('select_img').value;
+   if (image.length > 0) {
+       return true;
+   } else {
+       alert("请输入照片");
+       return false;
+   }
+};
+
+function show_in(it) {
+       if(!it){
+            return false;
+        }
+        $.ajaxSetup({data: {csrfmiddlewaretoken: '{{ csrf_token }}'}});
+        var datas = new FormData(document.getElementById("show_img"));
+        url = "/news/show_in_index/";
+        var img = $('[name=select_img]')[0].files[0];
+        datas.append('image',img);
+        datas.append('type',sessionStorage.getItem('type'));
+        datas.append('id',sessionStorage.getItem('id'));
+        sessionStorage.removeItem('type');
+        sessionStorage.removeItem('id');
+    $.ajax({
+                type: "POST",
+                url: url,
+                dataType: 'json',
+                data:datas,
+                processData: false,  //
+                contentType: false,
+                success: function (res) {
+                    if(res.status==200){
+                        alert('提交成功');
+                        location.reload();
+                    }else{
+                        alert('提交失败');
+                        location.reload();
+                    }
+                },
+                error : function() {
+                    alert("提交异常！");
+                }
+            });
+    };
+
+</script>
+    {% endcomment %}
+{% endblock content2 %}

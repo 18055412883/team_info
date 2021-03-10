@@ -25,22 +25,6 @@
 				margin-bottom: 0px;
 			}
 
-            .form-column-loca{
-            margin: 1.5%;
-            position:absolute; top:12.4%; z-index:11;
-            left: 70%;
-            }
-            .form-column-header{
-                margin-top: 1%;
-            }
-            .form-column-pic{
-                width: 90px;
-                height: 150px;
-                border: solid;
-                background-color: white;
-                border-color: #989898;
-            }
-
     </style>
     <style>
     input:focus{
@@ -127,8 +111,8 @@
         <ul class="nav nav-tabs nav-justified">
         <li role="presentation" id="tch0" class="{% block ac_mg %}{% endblock ac_mg %}"><a href="" style="color:purple;font-size:18px;font-family:微软雅黑;font-weight: bold;">帐户管理</a></li>
         <li role="presentation" id="tch1" class="{% block info_mg %}{% endblock info_mg %}"><a href="/teacher_manage/tch_edit/" style="color:purple;font-size:18px;font-family:微软雅黑;font-weight: bold;">团队信息管理</a></li>
-        <li role="presentation" id="news" class="{% block news_mg %}{% endblock news_mg %}"><a href="" style="color:purple;font-size:18px;font-family:微软雅黑;font-weight: bold;">新闻管理</a></li>
-        <li role="presentation" id="thesis" class="{% block aca_mg %}{% endblock aca_mg %}"><a href="" style="color:purple;font-size:18px;font-family:微软雅黑;font-weight: bold;">教学成果管理</a></li>
+        <li role="presentation" id="news" class="{% block news_mg %}{% endblock news_mg %}"><a href="/news_manage/news_edit/" style="color:purple;font-size:18px;font-family:微软雅黑;font-weight: bold;">新闻管理</a></li>
+        <li role="presentation" id="thesis" class="{% block aca_mg %}{% endblock aca_mg %}"><a href="/thesis/thesis_edit/" style="color:purple;font-size:18px;font-family:微软雅黑;font-weight: bold;">教学成果管理</a></li>
         <li role="presentation" id="project" class="{% block sci_mg %}{% endblock sci_mg %}"><a href="" style="color:purple;font-size:18px;font-family:微软雅黑;font-weight: bold;">科研成果管理</a></li>
         <li role="presentation" id="recruit" class="{% block enroll_mg %}{% endblock enroll_mg %}"><a href="" style="color:purple;font-size:18px;font-family:微软雅黑;font-weight: bold;">招生招聘</a></li>
         <li role="presentation" id="contact_us" class="{% block con_us %}{% endblock con_us %}"><a href="" style="color:purple;font-size:18px;font-family:微软雅黑;font-weight: bold;">联系我们</a></li>
@@ -138,40 +122,21 @@
 </nav>
 
 <!--导航栏结束-->
+<div class="part1">
 {% block content1 %}
+    <div class="right_part">
+    {% block content2 %}
 
-<!--
-<nav class="nav navbar-default" id="dir_bar" style="width: 100%">
-        <div class="navbar-header">
-            <a href="#" class="navbar-brand" >菜单</a>
-            <button class="navbar-toggle collapsed" data-toggle="collapse" id="dir_btn"  data-target="#dir_span">
-                <span class="glyphicon glyphicon-align-justify" ></span>
-            </button>
-        </div>
-        <div class="collapse navbar-collapse" id="dir_span">
-            <ul class="nav nav-tabs nav-justified">
-                {% comment %}{% if request.session.iden == 'manager' %}{% endcomment %}
-                    <li role="presentation" ><a href="/teacher_manage/tch_edit/" style="color:purple;font-size:18px;font-family:微软雅黑;font-weight: bold;">增 加 教 师</a></li>
-                {% comment %}{% endif %}{% endcomment %}
-                    <li role="presentation" ><a href="/teacher_manage/tch_list/" style="color:purple;font-size:18px;font-family:微软雅黑;font-weight: bold;" >教 师 列 表</a></li>
-                    <li role="presentation" ><a href="/teacher_manage/stu_edit/" style="color:purple;font-size:18px;font-family:微软雅黑;font-weight: bold;" >增 加 学 生</a></li>
-                    <li role="presentation" ><a href="/teacher_manage/stu_list/" style="color:purple;font-size:18px;font-family:微软雅黑;font-weight: bold;" >学 生 列 表</a></li>
-            </ul>
-        </div>
-</nav>
--->
-
-
+    {% endblock content2 %}
+    </div>
 {% endblock content1 %}
-
-{% block content2 %}
-
-{% endblock content2 %}
+<div>
+    <div class="part1">
 <script rel="stylesheet" type="text/javascript" src="{% static 'js/team_info.js'%}"></script>
 <script type="text/javascript" src="{% static 'js/regex.js' %}"></script>
 <script rel="stylesheet" type="text/javascript" src="{% static 'My97DatePicker/WdatePicker.js'%}"></script>
 <script rel="stylesheet" type="text/javascript" src="{% static 'js/checkform.js'%}"></script>
-</div>
+
 
 <div class="footer-bottom-test" style="width: 100%; height: auto; background-color: black; ">
         <div class="row" style="width: 100%; height: auto;text-align: center;color: white;font-size:15px;">
@@ -194,11 +159,12 @@
             </div>
         </div>
     </div>
+    </div>
 </body>
-<script type="text/javascript" src="{% static '/static/js/footer.js'%}"></script>
-<script type="text/javascript" src="{% static '/static/js/jquery-1.11.3.min.js' %}"></script>
-<script rel="stylesheet" src="{% static '/static/bootstrap-3.3.7-dist/js/bootstrap.js' %}"></script>
-<script rel="stylesheet" type="text/javascript" src="{% static '/static/My97DatePicker/WdatePicker.js'%}"></script>
-<script rel="stylesheet" type="text/javascript" src="{% static '/static/js/checkform.js'%}"></script>
-<script type="text/javascript" src="{% static '/static/js/manager_dir_nav.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/footer.js'%}"></script>
+<script type="text/javascript" src="{% static 'js/jquery-1.11.3.min.js' %}"></script>
+<script rel="stylesheet" src="{% static 'bootstrap-3.3.7-dist/js/bootstrap.js' %}"></script>
+<script rel="stylesheet" type="text/javascript" src="{% static 'My97DatePicker/WdatePicker.js'%}"></script>
+<script rel="stylesheet" type="text/javascript" src="{% static 'js/checkform.js'%}"></script>
+<script type="text/javascript" src="{% static 'js/manager_dir_nav.js' %}"></script>
 </html>

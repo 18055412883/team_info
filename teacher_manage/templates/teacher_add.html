@@ -255,9 +255,8 @@
                     </td>
                     <td>
                         <center><span class="col-md-2 col-xs-12">
-                        <!--<button class="btn btn-primary btn-group-vertical" style="width:80px" type="submit">
-                        提交</button>-->
-                            <input class="btn btn-primary btn-group-vertical" style="width:80px" type="submit">
+
+                            <input class="btn btn-primary btn-group-vertical" style="width:80px" type="button" id="sub" value="保存">
                         </span><span class="col-md-3 col-xs-12">
                         <button class="btn btn-warning" style="width:120px">
                             保存到草稿箱
@@ -272,6 +271,31 @@
         </form>
     </table>
 </div>
+    <script>
+    $('#sub').click(function () {
+        var formData = new FormData($("#tch_info")[0]);
+        $.ajax({
+            url: '/teacher_manage/teacher_add/',
+            type: 'post',
+            data: formData,
+            async: "false",
+            dataType: "JSON",
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                if(response['status'] == 'success'){
+                    alert("添加成功");
+                    window.location = '/teacher_manage/teacher_add/'
+                }
+                else{
+                    alert("添加失败");
+                }
+
+            }
+        });
+    });
+</script>
+
 <script type="text/javascript" src="{% static 'js/checkform.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/team_info.js' %}"></script>
 

@@ -107,22 +107,17 @@
 
 <script>
     $('#sub').click(function () {
+        var formData = new FormData($("#stu_info")[0]);
         $.ajax({
             url: '/student_manage/stu_add/',
             type: 'post',
-            data: {
-                csrfmiddlewaretoken: $("[name='csrfmiddlewaretoken']").val(),
-                stu_pic: $('[name="stu_pic"]').val(),
-                stu_name: $('[name="stu_name"]').val(),
-                stu_id: $('[name="stu_id"]').val(),
-                stu_sex: $('[name="stu_sex"]').val(),
-                stu_iden: $('[name="stu_iden"]').val(),
-                stu_intro: $('[name="stu_intro"]').val()
-            },
+            data: formData,
             async: "false",
             dataType: "JSON",
+            contentType: false,
+            processData: false,
             success: function (response) {
-                if(response['status']){
+                if(response['status'] == 'success'){
                     alert("添加成功");
                     window.location = '/student_manage/stu_add/'
                 }

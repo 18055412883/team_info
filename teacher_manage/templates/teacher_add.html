@@ -12,7 +12,7 @@
             <li>当前位置</li>
             <li class="active">增加教师</li>
         </ol>
-        <form id="tch_info" method="post" action="/teacher_manage/teacher_add/" enctype="multipart/form-data">
+        <form id="tch_info" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="form-column-loca">
                 <div id="result" class="form-column-pic" style="height:155px;width:95px"></div>
@@ -173,7 +173,6 @@
                         <input type = "radio" name="tch_iden" id="身份" value="副教授" >&nbsp;&nbsp;副教授&nbsp;&nbsp;
                         <input type = "radio" name="tch_iden" id="身份" value="讲师" >&nbsp;&nbsp;讲师
                         </label>
-
                     </td>
                 </tr>
                 <tr>
@@ -186,8 +185,7 @@
                                 <div class="input-group" style="width:100%">
                                     <label for="tch_career">
                                     <input class="form-control" placeholder="选择日期" type="text" name="tch_career" id ='入职年份' class="Wdate" onclick="WdatePicker({dateFmt:'yyyy'})" style="width:186px;cursor:hand"/>
-                                    </label>{{ form_obj.tch_career }}{{ form_obj.tch_career.errors.0 }}
-
+                                    </label>
                                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                                 </div>
                             </div>
@@ -255,13 +253,12 @@
                     </td>
                     <td>
                         <center><span class="col-md-2 col-xs-12">
-
-                            <input class="btn btn-primary btn-group-vertical" style="width:80px" type="button" id="sub" value="保存">
+                        <input class="btn btn-primary btn-group-vertical" style="width:80px" type="button" id="sub" value="保存">
                         </span><span class="col-md-3 col-xs-12">
-                        <button class="btn btn-warning" style="width:120px">
+                        <button class="btn btn-warning" style="width:120px" id="draft">
                             保存到草稿箱
                         </button></span><span class="col-md-2 col-xs-12">
-                        <a id="backBtn" class="btn btn-default" style="width:80px" target="_blank" href="/teacher_manage/tch_edit/">
+                        <a id="backBtn" class="btn btn-default" style="width:80px" href="/teacher_manage/tch_edit/">
                             返回
                         </a></span></center>
                     </td>
@@ -273,27 +270,34 @@
 </div>
     <script>
     $('#sub').click(function () {
+        SUB('t')
+    });
+    $('#draft').click(function () {
+        SUB('d')
+    });
+    function SUB(btn) {
         var formData = new FormData($("#tch_info")[0]);
+        formData.append('btn', btn);
         $.ajax({
             url: '/teacher_manage/teacher_add/',
-            type: 'post',
+            type: 'POST',
             data: formData,
-            async: "false",
+            async: false,
             dataType: "JSON",
             contentType: false,
             processData: false,
             success: function (response) {
                 if(response['status'] == 'success'){
                     alert("添加成功");
-                    window.location = '/teacher_manage/teacher_add/'
+                    window.location = '/teacher_manage/tch_edit/'
                 }
                 else{
                     alert("添加失败");
                 }
-
             }
         });
-    });
+    }
+
 </script>
 
 <script type="text/javascript" src="{% static 'js/checkform.js' %}"></script>

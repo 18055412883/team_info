@@ -1,0 +1,271 @@
+{% extends 'info_templat.html' %}
+{% load static %}
+
+{% block tch_add %}
+    list-group-item active
+{% endblock tch_add %}
+
+{% block content2 %}
+<div class="col-lg-9 col-md-9" style="background-color: white; min-height: 500px; padding: 20px;">
+    <table class="table table-condensed">
+        <ol class="breadcrumb">
+            <li>当前位置</li>
+            <li class="active">修改教师信息</li>
+        </ol>
+        <form id="tch_info" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-column-loca">
+                <div id="result" class="form-column-pic">
+                    <img src= '../../upload/{{tch.tch_pic}}' style="height: 150px;width: 90px;">
+                </div>
+                <center><input type="file" name="tch_pic" id="照片" multiple="multiple" accept="image/*" onchange="ProcessFile(this)"/></center>
+            </div>
+            <table class="table table-condensed" cellpadding="1" cellspacing="1" border="0">
+                <tr>
+                    <td class="form-column-header">
+                        &nbsp;&nbsp;&nbsp;姓&nbsp;&nbsp;名&nbsp;&nbsp;&nbsp;
+                    </td>
+                    <td>
+                        <span style="color: red;float: left;margin-left: 4px;line-height: 28px;font-weight: bold;font-size: 16px;">*&nbsp;&nbsp;</span>
+                        <input class="form-control" type="text" name="tch_nam" id="教师姓名" onblur="limit_letter_chinese(this,'教师姓名')" value="{{tch.tch_nam}}" dataType="*" style="width:200px;"/>
+                        <div class="error-msg info"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-column-header">
+                        &nbsp&nbsp&nbsp性&nbsp&nbsp别&nbsp&nbsp&nbsp
+                    </td>
+                    <td>
+                        <input type = "radio" name="tch_sex"  value="m">&nbsp;&nbsp;male&nbsp;&nbsp;
+                        <input type = "radio" name="tch_sex"  value="f" >&nbsp;&nbsp;female
+                    </td>
+                </tr>
+                <script>
+                   var s = document.getElementsByName('tch_sex');
+                   value = "{{ tch.tch_sex }}";
+                   for(var i=0; i<s.length; i++){
+                        if(s[i].value == value){
+                            s[i].checked = true;
+                        }
+                   }
+                </script>
+                <tr>
+                    <td class="form-column-header">
+                        &nbsp手&nbsp机&nbsp号&nbsp
+                    </td>
+                    <td>
+                        <span style="color: red;float: left;margin-left: 4px;line-height: 28px;font-weight: bold;font-size: 16px;">*&nbsp;&nbsp;</span>
+                        <input class="form-control" type="text" name="tch_tel"onblur="limit_tel(this,'电话')" id="电话" value="{{tch.tch_tel}}" dataType="*" style="width:200px;"/>
+                        <div class="error-msg info"></div>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td class="form-column-header">
+                        &nbsp&nbsp&nbsp民&nbsp&nbsp族&nbsp&nbsp&nbsp
+                    </td>
+                    <td>
+                        <span style="color: red;float: left;margin-left: 4px;line-height: 28px;font-weight: bold;font-size: 16px;">*&nbsp;&nbsp;</span>
+                        <input class="form-control" type="text" name="tch_nation" onblur="limit_letter_chinese_length(this,20,'民族')"id="民族" value="{{tch.tch_nation}}" dataType="*" style="width:200px;"/>
+                        <div class="error-msg info"></div>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td class="form-column-header">
+                        &nbsp&nbsp&nbsp籍&nbsp&nbsp贯&nbsp&nbsp&nbsp
+                    </td>
+                    <td>
+                        <span style="color: red;float: left;margin-left: 4px;line-height: 28px;font-weight: bold;font-size: 16px;">*&nbsp;&nbsp;</span>
+                        <input class="form-control" type="text" onblur="limit_letter_chinese_length(this,50,'籍贯')"name="tch_bpl" id="籍贯" value="{{tch.tch_bpl}}" dataType="*" style="width:200px;"/>
+                        <div class="error-msg info"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-column-header">
+                        学校名称
+                    </td>
+                    <td>
+                        <span style="color: red;float: left;margin-left: 4px;line-height: 28px;font-weight: bold;font-size: 16px;">*&nbsp;&nbsp;</span>
+                        <input class="form-control" type="text"onblur="limit_letter_chinese_length(this,20,'学校名称')" name="tch_sch" id="学校名称" value="{{tch.tch_sch}}" dataType="*" style="width:200px;"/>
+                        <div class="error-msg info"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-column-header">
+                        &nbsp&nbsp&nbsp学&nbsp&nbsp院&nbsp&nbsp&nbsp
+                    </td>
+                    <td>
+                        <span style="color: red;float: left;margin-left: 4px;line-height: 28px;font-weight: bold;font-size: 16px;">*&nbsp;&nbsp;</span>
+                        <input class="form-control" type="text" onblur="limit_letter_chinese_length(this,20,'学院')" name="tch_ins" id="tch_ins" value="{{tch.tch_ins}}" dataType="*" style="width:200px;"/>
+                        <div class="error-msg info"></div>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td class="form-column-header">
+                        &nbsp&nbsp&nbsp地&nbsp&nbsp址&nbsp&nbsp&nbsp
+                    </td>
+                    <td>
+                        <span style="color: red;float: left;margin-left: 4px;line-height: 28px;font-weight: bold;font-size: 16px;">*&nbsp;&nbsp;</span>
+                        <input class="form-control" type="text" onblur="limit_length(this,50,'地址')"name="tch_adr" id="tch_adr" value="{{tch.tch_adr}}" dataType="*" style="width:200px;"/>
+                        <div class="error-msg info"></div>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td class="form-column-header">
+                        邮政编码
+                    </td>
+                    <td>
+                        <span style="color: red;float: left;margin-left: 4px;line-height: 28px;font-weight: bold;font-size: 16px;">*&nbsp;&nbsp;</span>
+                        <input class="form-control" type="text" onblur="limit_number_length(this,6,6,'邮政编码')"name="tch_post" id="tch_pC" value="{{tch.tch_post}}" dataType="*" style="width:200px;"/>
+                        <div class="error-msg info"></div>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td class="form-column-header">
+                        &nbsp&nbsp&nbsp邮&nbsp&nbsp箱&nbsp&nbsp&nbsp
+                    </td>
+                    <td>
+                        <span style="color: red;float: left;margin-left: 4px;line-height: 28px;font-weight: bold;font-size: 16px;">*&nbsp;&nbsp;</span>
+                        <input class="form-control" type="text" name="tch_ema" id="邮箱" value="{{tch.tch_ema}}" dataType="*" onblur="limit_email(this,'邮箱')"style="width:200px;"/>
+                        <div class="error-msg info"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-column-header">
+                        &nbsp;&nbsp;&nbsp;个人主页&nbsp;&nbsp;&nbsp;
+                    </td>
+                    <td>
+                        <span style="color: red;float: left;margin-left: 4px;line-height: 28px;font-weight: bold;font-size: 16px;">*&nbsp;&nbsp;</span>
+                        <input class="form-control" type="text"  name="self_page" id="个人主页" value="{{tch.self_page}}" dataType="*" style="width:200px;"/>
+                        <div class="error-msg info"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-column-header">
+                        &nbsp&nbsp&nbsp身&nbsp&nbsp份&nbsp&nbsp&nbsp
+                    </td>
+                    <td>
+                        <label for="tch_iden">
+                        <input type = "radio" name="tch_iden" value="教授" checked="checked">&nbsp;&nbsp;教授&nbsp;&nbsp;
+                        <input type = "radio" name="tch_iden" value="副教授" >&nbsp;&nbsp;副教授&nbsp;&nbsp;
+                        <input type = "radio" name="tch_iden" value="讲师" >&nbsp;&nbsp;讲师
+                        </label>
+                    </td>
+                </tr>
+                <script>
+                   var s = document.getElementsByName('tch_iden');
+                   value = "{{ tch.tch_iden }}";
+                   for(var i=0; i<s.length; i++){
+                        if(s[i].value == value){
+                            s[i].checked = true;
+                        }
+                   }
+                </script>
+                <tr>
+                    <td class="form-column-header">
+                        入职年份
+                    </td>
+                    <td>
+                        <div class="input-group">
+                            <div class="input-icon-group">
+                                <div class="input-group" style="width:100%">
+                                    <input class="form-control" placeholder="选择日期" type="text" name="tch_career" id ='入职年份' value="{{tch.tch_career}}" class="Wdate" onclick="WdatePicker({dateFmt:'yyyy'})" style="width:186px;cursor:hand"/>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-column-header">
+                        教学经历
+                    </td>
+                    <td>
+                        <textarea class="form-column-text" name="tch_edu" id="教学经历" value=""style="width:80%;height:200px;">{{tch.tch_edu}}</textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-column-header">
+                        工作经历
+                    </td>
+                    <td>
+                        <textarea class="form-column-text" name="tch_exp" id="工作经历" value=""style="width:80%;height:200px;">{{tch.tch_exp}}</textarea>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td class="form-column-header">
+                        学术任职
+                    </td>
+                    <td>
+                        <textarea class="form-column-text" name="tch_aca" id="学术任职"value=""style="width:80%;height:200px;">{{tch.tch_aca}}</textarea>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td class="form-column-header">
+                        荣誉获奖
+                    </td>
+                    <td>
+                        <textarea class="form-column-text" name="tch_honr" id="荣誉称号" style="width:80%;height:200px;">{{tch.tch_honr}}</textarea>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td class="form-column-header">
+                        个人简介
+                    </td>
+                    <td>
+                        <textarea class="form-column-text" name="tch_intro" id="个人简介" style="width:80%;height:200px;">{{tch.tch_intro}}</textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <center><span class="col-md-2 col-xs-12"><button class="btn btn-primary btn-group-vertical" style="width:80px" id="sub">提交</button>
+                        </span>
+                            <span class="col-md-3 col-xs-12"><button class="btn btn-warning" style="width:120px" id="draft">保存到草稿箱</button>
+                        </span>
+                            <span class="col-md-3 col-xs-12"><a id="backBtn" class="btn btn-default" style="width:80px" href="/teacher_manage/teacher_list/">返回</a>
+                            </span></center>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </table>
+</div>
+    <script>
+    $('#sub').click(function () {
+        SUB('rt')
+    });
+    $('#draft').click(function () {
+        SUB('rd')
+    });
+    function SUB(btn) {
+        var formData = new FormData($("#tch_info")[0]);
+        formData.append('btn', btn);
+        $.ajax({
+            url: '/teacher_manage/teacher_add/',
+            type: 'POST',
+            data: formData,
+            async: false,
+            dataType: "JSON",
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                if(response.status == 'success'){
+                    alert("修改成功");
+                    window.location = '/teacher_manage/teacher_list/'
+                }
+                else{
+                    alert("修改失败");
+                }
+            }
+        });
+    }
+    </script>
+{% endblock content2%}

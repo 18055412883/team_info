@@ -5,3 +5,4 @@ from Team_info_manage.utils.http_resp import HttpResp, WreshResponse
 def thesis_edit(request):
     return WreshResponse.html_response(request, 'thesis_add.html')
 
+

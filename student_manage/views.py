@@ -1,3 +1,4 @@
+from django.views.decorators.csrf import csrf_exempt
 
 from .models import student_info
 from Team_info_manage.utils.const_pool import StateMap
@@ -23,3 +24,16 @@ def stu_add(request):
             return WreshResponse.json_response(status=HttpResp.ERROR, msg="failed")
     else:
         return WreshResponse.html_response(request, "student_add.html")
+
+@csrf_exempt
+def stu_del(request):
+    if request.method == 'POST':
+        stu_id = request.POST.get('stu_id')
+        student_info.objects.filter(stu_id=stu_id).delete()
+        return WreshResponse.json_response(status=HttpResp.OK, msg="successful")
+    else:
+        return WreshResponse.json_response(status=HttpResp.ERROR, msg="failed")
+
+def stu_draft(request, stu_id):
+    stu = student_info.objects.get(stu_id=stu_id)
+    return WreshResponse.html_response(request, "student_draft.html", {'stu': stu})

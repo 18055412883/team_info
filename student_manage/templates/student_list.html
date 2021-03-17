@@ -1,4 +1,5 @@
 {% extends 'info_templat.html' %}
+{% load static %}
 
 {% block stu_list %}
     list-group-item active
@@ -15,7 +16,7 @@
         <table class="table table-condensed">
             {% for stu in curr_page_obj %}
             <tr>
-                <td style="width:700px;height:30px;">
+                <td style="width:700px;">
                     <a href="javascript:void(0);" target="_blank">
                         {% if stu.status == 0%}
                         <H3 style="font-size:17px;color:#000000;max-width:500px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;">{{ stu.stu_name }}(草稿)</H3>
@@ -25,10 +26,10 @@
                     </a>
                 </td>
                 <td>
-                    <h3><a href="/teacher_manage/stu_draft/{{ stu.stu_id }}"><button class="btn btn-primary">修改</button></a></h3>
+                    <h3><a href="/student_manage/stu_draft/{{ stu.stu_id }}"><button class="btn btn-primary">修改</button></a></h3>
                 </td>
                 <td>
-                    <h3><a href="javascript:void(0);" onclick="del_team_info('stu',{{ stu.stu_id }})"><button class="btn btn-danger">删除</button></a></h3>
+                    <h3><a href="javascript:void(0);" onclick="stu_del('{{ stu.stu_id }}')"><button class="btn btn-danger">删除</button></a></h3>
                 </td>
             </tr>
             {% endfor %}
@@ -45,7 +46,7 @@
                 {% endif %}
                 {#全部页码#}
                 {% for page_num in page_range %}
-                {% if page_num == page_of_news.number %}{#判断是否当前 是则高亮 #}
+                {% if page_num == curr_page_obj.number %}{#判断是否当前 是则高亮 #}
                 <li class="active"><a href="?page={{page_num}}">{{page_num}} </a></li>
                 {% else %}
                 {% if page_num == '...' %}
@@ -71,5 +72,28 @@
         </div><br><br><br>
     </table>
 </div>
+<script>
+function stu_del(id) {
+    var k = confirm("确认删除?");
+    if (k) {
+        var post_data = {"stu_id": id};
+        $.ajax({
+            url: '/student_manage/stu_delete/',
+            type: 'POST',
+            data: post_data,
+            success: function (response) {
+                if (response['status'] == 'success') {
+                    alert("删除成功");
+                    window.location = '/student_manage/stu_list/'
+                } else {
+                    alert("删除失败");
+                }
+            }
+        });
+
+    }
+}
+
+</script>
 
 {% endblock content2 %}

@@ -16,7 +16,7 @@
         {% for tch in curr_page_obj %}
             <tr>
                 <td style="width:700px;">
-                    <a href="/teacher_manage/teaching/{{ tch.id }}/" target="_blank">
+                    <a href="/teacher_manage/teaching/{{ tch.tch_account }}/" target="_blank">
                         {% if tch.status == 0%}
                         <H3 style="font-size:17px;color:#000000;max-width:500px;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;">{{ tch.tch_nam }}(草稿)</H3>
                         {% else %}
@@ -24,8 +24,8 @@
                         {% endif %}
                     </a>
                 </td>
-                <td><h3><a href="/teacher_manage/tch_draft/{{ tch.id }}"><button class="btn btn-primary">修改</button></a></h3></td>
-                <td><h3><a href="javascript:void(0);" onclick="del_team_info('tch',{{ tch.id }})"><button class="btn btn-danger">删除</button></a></h3></td>
+                <td><h3><a href="/teacher_manage/teacher_draft/{{ tch.tch_account }}/"><button class="btn btn-primary">修改</button></a></h3></td>
+                <td><h3><a href="javascript:void(0);" onclick="tch_del('{{ tch.tch_account }}')"><button class="btn btn-danger">删除</button></a></h3></td>
             </tr>
         {% endfor %}
         </table>
@@ -67,4 +67,28 @@
         </div><br><br><br>
     </table>
     </div>
+
+<script>
+function tch_del(account) {
+    var k = confirm("确认删除?");
+    if (k) {
+        var post_data = {"tch_account": account};
+        $.ajax({
+            url: '/teacher_manage/teacher_delete/',
+            type: 'POST',
+            data: post_data,
+            success: function (response) {
+                if (response['status'] == 'success') {
+                    alert("删除成功");
+                    window.location = '/teacher_manage/teacher_list/'
+                } else {
+                    alert("删除失败");
+                }
+            }
+        });
+
+    }
+}
+
+</script>
 {% endblock content2 %}

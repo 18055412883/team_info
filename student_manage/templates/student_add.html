@@ -13,7 +13,7 @@
             <li>当前位置</li>
             <li class="active">增加学生</li>
         </ol>
-        <form  id="stu_info" method="post" {% comment %}action="/student_manage/stu_add/"{% endcomment %} enctype="multipart/form-data">
+        <form  id="stu_info" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="form-column-loca">
                 <div id="result" class="form-column-pic" style="height:155px;width:95px"></div>
@@ -38,7 +38,7 @@
                 </tr>
                 <tr>
                     <td class="form-column-header">
-                        &nbsp;&nbsp;&nbsp;账&nbsp;&nbsp;号&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;学&nbsp;&nbsp;号&nbsp;&nbsp;&nbsp;
                     </td>
                     <td>
                         <span style="color: red;float: left;margin-left: 4px;line-height: 28px;font-weight: bold;font-size: 16px;">*&nbsp;&nbsp;</span>
@@ -77,9 +77,7 @@
                         个人简介
                     </td>
                     <td>
-
                         <textarea class="form-control" name="stu_intro" id="stu_intro"style="width:500px;height:150px;"></textarea>
-
                     </td>
                 </tr>
                 <tr>
@@ -90,11 +88,11 @@
                         <input type="button" class="btn btn-primary btn-group-vertical" style="width:80px" value="保存" id="sub">
                         </span>
                             <span class="col-md-3 col-xs-12">
-                        <button style="width:120px" onclick="return sub_info(true,'f','stu')" class="button button-rounded button-small button-primary">
+                        <button style="width:120px" class="btn btn-warning" id="draft">
                             保存到草稿箱
                         </button></span>
                             <span class="col-md-3 col-xs-12">
-                        <a id="backBtn" class="btn btn-default" style="width:80px" href="/student_manage/stu_edit/">
+                        <a id="backBtn" class="btn btn-default" style="width:80px"  href="/student_manage/stu_edit/">
                             返回
                         </a></span>
                         </center>
@@ -107,28 +105,33 @@
 
 <script>
     $('#sub').click(function () {
+        SUB('t')
+    });
+    $('#draft').click(function () {
+        SUB('d')
+    });
+    function SUB(btn) {
         var formData = new FormData($("#stu_info")[0]);
+        formData.append('btn', btn);
         $.ajax({
             url: '/student_manage/stu_add/',
             type: 'post',
             data: formData,
-            async: "false",
+            async: false,
             dataType: "JSON",
             contentType: false,
             processData: false,
             success: function (response) {
-                if(response['status'] == 'success'){
+                if(response.status == 'success'){
                     alert("添加成功");
                     window.location = '/student_manage/stu_add/'
                 }
                 else{
                     alert("添加失败");
                 }
-
             }
         });
-    });
-
+    }
 </script>
 
 {% endblock content2 %}

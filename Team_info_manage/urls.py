@@ -24,4 +24,6 @@ urlpatterns = [
     path('announce/', include('announcement.urls')),
     path('support/', include('support.urls')),
     path('thesis/', include('thesis.urls')),
+    path('database_manage/', include('database_manage.urls')),
+
 ]

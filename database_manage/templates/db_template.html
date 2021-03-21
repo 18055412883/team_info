@@ -1,0 +1,46 @@
+{% extends 'manage_template.html' %}
+{% load static %}
+
+{% block data_mg %}
+    active
+{% endblock data_mg %}
+
+{% block content1 %}
+<nav class="nav navbar-default" id="dir_bar" style="width: 100%">
+    <div class="navbar-header">
+        <a href="#" class="navbar-brand" >菜单</a>
+        <button class="navbar-toggle collapsed" data-toggle="collapse" id="dir_btn"  data-target="#dir_span">
+            <span class="glyphicon glyphicon-align-justify" ></span>
+        </button>
+    </div>
+    <div class="collapse navbar-collapse" id="dir_span">
+        <ul class="nav nav-tabs nav-justified">
+            <li role="presentation" ><a href="/database_manage/log_manage/" class="list-group-item" style="color:purple;font-size:18px;font-family:微软雅黑;font-weight: bold;">日 志 管 理</a></li>
+
+            <li role="presentation" ><a href="" class="list-group-item" style="color:purple;font-size:18px;font-family:微软雅黑;font-weight: bold;" > 备 份 </a></li>
+<!--            <li role="presentation" ><a href="/database/db_restore/" class="list-group-item" style="color:purple;font-size:18px;font-family:微软雅黑;font-weight: bold;" > 还 原 </a></li>-->
+
+        </ul>
+    </div>
+</nav>
+<div id="dir">
+    <div class="col-lg-2 col-md-3" style="height: auto;">
+        <div class="list-group">
+            <center>
+                <a href="/database_manage/log_manage/" class="{% block log %}list-group-item{% endblock %}" id="operate_log_list" style="font-weight:bold;">日 志 管 理</a>
+
+                <a href="" class="{% block backup %}list-group-item{% endblock %}" id="db_backup"> 备 份 </a>
+<!--                <a href="/database/db_restore/" class="list-group-item" id="db_restore"> 还 原 </a>-->
+
+            </center>
+        </div>
+    </div>
+</div>
+{% block content2 %}
+<div class="right_part">
+
+</div>
+{% endblock content2 %}
+
+
+{% endblock content1 %}

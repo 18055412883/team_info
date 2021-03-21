@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'announcement',
     'support',
     'thesis',
+    'database_manage'
 ]
 
 MIDDLEWARE = [

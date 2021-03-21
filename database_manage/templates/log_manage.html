@@ -1,0 +1,99 @@
+{% extends 'db_template.html' %}
+
+{% block log %}
+    list-group-item active
+{% endblock %}
+
+{% block content2 %}
+
+<div class="col-lg-9 col-md-9" style="background-color: white; min-height: 500px; padding: 20px;">
+    <table class="table table-condensed">
+        <ol class="breadcrumb">
+            <li>当前位置</li>
+            <li class="active">日志管理</li>
+        </ol>
+        <div class="well well-sm">
+            <span style="font-weight:bold">操作类型注解 = {
+            <span style="color:#337AB7">"1": 添加</span>,
+            <span style="color:#F0AD4E">"2": 修改</span>,
+            <span style="color:#D9534F">"3": 删除</span>,
+            <span style="color:#5CB85C">"4": 备份</span>
+            }</span>
+        </div>
+    </table>
+    <table class="table table-condensed">
+        <colgroup>
+            <col width="100">
+            <col width="100">
+            <col width="100">
+            <col width="150">
+            <col width="100">
+        </colgroup>
+        <thead>
+        <tr>
+            <th>操作者</th>
+            <th>时间</th>
+            <th>类型</th>
+            <th>项目</th>
+            <th>详情</th>
+        </tr>
+        </thead>
+        {% for log in curr_page_obj %}
+        <tr>
+            <td>{{ log.operate_user_name }}</td>
+            <td>{{ log.operate_time }}</td>
+            <td>{{ log.operate_type }}</td>
+            <td>{{ log.operate_remark }}</td>
+            <td>{{ log.operate_details }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <div class="paginator" align="center">
+        <ul class="pagination">
+            <li>
+                {% if curr_page_obj.has_previous %}
+                <a href = "?page={{ curr_page_obj.previous_page_number }}" aria-label="Previous">
+                    <span aria-hidden="true"> &laquo; </span>
+                </a>
+                {% else %}
+            </li>
+            <li class="disabled">
+                <span aria-hidden="true"> &laquo; </span>
+            </li>
+            {% endif %}
+            {% for page_num in page_range %}
+            {% if page_num == curr_page_obj.number %}
+            <li class="active">
+                <a href="?page={{page_num}}">{{page_num}} </a>
+            </li>
+            {% else %}
+            {% if page_num == '...' %}
+            <li>
+                <span>{{  page_num  }}</span>
+            </li>
+            {% else %}
+            <li>
+                <a href="?page={{page_num}}">{{page_num}}</a>
+            </li>
+            {% endif %}
+            {% endif %}
+            {% endfor %}
+            <li>
+                {% if curr_page_obj.has_next %}
+                <a href = "?page={{ curr_page_obj.next_page_number }}" aria-label="Next">
+                    <span aria-hidden="true"> &raquo; </span>
+                </a>
+                {% else %}
+            </li>
+            <li class="disabled">
+                <span aria-hidden="true" > &raquo; </span>
+            </li>
+            {% endif %}
+        </ul>
+        <p align="center">
+            共有{{ curr_page_obj.paginator.count }}条日志，当前第{{ curr_page_obj.number  }}页，共{{ curr_page_obj.paginator.num_pages }}页
+        </p>
+    </div>
+</div>
+
+{% endblock content2 %}

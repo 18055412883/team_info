@@ -14,10 +14,24 @@ def stu_edit(request):
 
 def stu_add(request):
     if request.method == 'POST':
+        btn = request.POST.get('btn')
         form_obj = StuForm(request.POST, request.FILES)
-        if form_obj.is_valid():
+        stu_id = request.POST.get("stu_id")
+        exa = student_info.objects.filter(stu_id=stu_id).exists()
+        if form_obj.is_valid() and not exa:
             form_obj = form_obj.save(commit=False)
-            form_obj.status = StateMap.TO_BE_RELEASED
+            if btn =='t':
+                form_obj.status = StateMap.TO_BE_RELEASED
+            elif btn == 'd':
+                form_obj.status = StateMap.DRAFT
+            form_obj.save()
+            return WreshResponse.json_response(status=HttpResp.OK, msg="successful")
+        elif form_obj.is_valid():
+            form_obj = form_obj.save(commit=False)
+            if btn == 'rt':
+                form_obj.status = StateMap.TO_BE_RELEASED
+            elif btn == 'rd':
+                form_obj.status = StateMap.DRAFT
             form_obj.save()
             return WreshResponse.json_response(status=HttpResp.OK, msg="successful")
         else:

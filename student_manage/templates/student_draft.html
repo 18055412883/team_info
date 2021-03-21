@@ -1,0 +1,138 @@
+{% extends 'info_template.html' %}
+
+{% block stu_add %}
+    list-group-item active
+{% endblock stu_add %}
+
+{% block content2 %}
+
+<div class="col-lg-9 col-md-9" style="background-color: white; min-height: 500px; padding: 20px;">
+    <table class="table table-condensed">
+        <ol class="breadcrumb">
+            <li>当前位置</li>
+            <li class="active">修改学生信息</li>
+        </ol>
+        <form id="stu_info" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-column-loca">
+                <div id="result" class="form-column-pic">
+        {#          服务器得两层点,本地一层#}
+                    <img src= '../../upload/{{stu.stu_pic}}' style="height: 150px;width: 90px;">
+                </div>
+                <center><input type="file" name="stu_pic" id="照片" multiple="multiple" accept="image/*" onchange="ProcessFile(this)"/></center>
+            </div>
+            <table class="table table-condensed" cellpadding="1" cellspacing="1" border="0">
+                <tr>
+                    <td class="form-column-header">
+                        &nbsp;&nbsp;&nbsp;姓&nbsp;&nbsp;名&nbsp;&nbsp;&nbsp;
+                    </td>
+                    <td>
+                        <span style="color: red;float: left;margin-left: 4px;line-height: 28px;font-weight: bold;font-size: 16px;">*&nbsp;&nbsp;</span>
+                        <input class="form-control" type="text" name="stu_name" id="姓名" onblur="limit_letter_chinese(this,'学生姓名')" value="{{stu.stu_name}}" dataType="*" style="width:200px;"/>
+                        <div class="error-msg info"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-column-header">
+                        &nbsp;&nbsp;&nbsp;学&nbsp;&nbsp;号&nbsp;&nbsp;&nbsp;
+                    </td>
+                    <td>
+                        <span style="color: red;float: left;margin-left: 4px;line-height: 28px;font-weight: bold;font-size: 16px;">*&nbsp;&nbsp;</span>
+                        <input class="form-control" type="text" name="stu_id" id="学号" onblur="limit_number_length(this,1,18,'学号')" value="{{stu.stu_id}}" dataType="*" style="width:200px;"/>
+                        <div class="error-msg info"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-column-header">
+                        &nbsp;&nbsp;&nbsp;性&nbsp;&nbsp;别&nbsp;&nbsp;&nbsp;
+                    </td>
+                    <td>
+                        <input type = "radio" name="stu_sex" value="m" checked="checked">&nbsp;&nbsp;男&nbsp;&nbsp;
+                        <input type = "radio" name="stu_sex" value="f">&nbsp;&nbsp;女
+                    </td>
+                </tr>
+                <script>
+                   var s = document.getElementsByName('stu_sex');
+                   value = "{{ stu.stu_sex }}";
+                   for(var i=0; i<s.length; i++){
+                        if(s[i].value == value){
+                            s[i].checked = true;
+                        }
+                   }
+                </script>
+
+                <tr>
+                    <td class="form-column-header">
+                        &nbsp;&nbsp;&nbsp;学&nbsp;&nbsp;历&nbsp;&nbsp;&nbsp;
+                    </td>
+                    <td>
+                        <input type = "radio" name="stu_iden" value="0" checked="checked">&nbsp;&nbsp;硕士&nbsp;&nbsp;
+                        <input type = "radio" name="stu_iden" value="1" >&nbsp;&nbsp;博士&nbsp;&nbsp;
+                        <input type = "radio" name="stu_iden" value="2" >&nbsp;&nbsp;博士后
+                    </td>
+                </tr>
+                <script>
+                   var s = document.getElementsByName('stu_iden');
+                   value = "{{ stu.stu_iden }}";
+                   for(var i=0; i<s.length; i++){
+                        if(s[i].value == value){
+                            s[i].checked = true;
+                        }
+                   }
+                </script>
+                <tr>
+                    <td class="form-column-header">
+                        个人简介
+                    </td>
+                    <td>
+                        <textarea class="form-column-text" name="stu_intro" id="个人简介" style="width:80%;height:150px;">{{stu.stu_intro}}</textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <center><span class="col-md-2 col-xs-12"><button class="btn btn-primary btn-group-vertical" style="width:80px" id="sub"  >提交</button>
+                        </span>
+                            <span class="col-md-3 col-xs-12"><button class="btn btn-warning" style="width:120px" id="draft" >保存到草稿箱</button>
+                        </span>
+                            <span class="col-md-3 col-xs-12"><a id="backBtn" class="btn btn-default" style="width:80px" href="/teacher_manage/stu_list/">返回</a>
+                            </span></center>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </table>
+</div>
+<script>
+    $('#sub').click(function () {
+        SUB('rt')
+    });
+    $('#draft').click(function () {
+        SUB('rd')
+    });
+    function SUB(btn) {
+        var formData = new FormData($("#stu_info")[0]);
+        formData.append('btn', btn);
+        $.ajax({
+            url: '/student_manage/stu_add/',
+            type: 'POST',
+            data: formData,
+            async: false,
+            dataType: "JSON",
+            contentType: false,
+            processData: false,
+            success: function (response) {
+                if(response['status'] == 'success'){
+                    alert("修改成功");
+                    location.href = '/student_manage/stu_list/'
+                }
+                else{
+                    alert("修改失败");
+                }
+            }
+        });
+    }
+    </script>
+{% endblock content2 %}
+
+

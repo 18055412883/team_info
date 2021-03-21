@@ -1,4 +1,4 @@
-{% extends 'info_templat.html' %}
+{% extends 'info_template.html' %}
 {% load static %}
 
 {% block tch_add %}
@@ -257,9 +257,9 @@
             contentType: false,
             processData: false,
             success: function (response) {
-                if(response.status == 'success'){
+                if(response['status'] == 'success'){
                     alert("修改成功");
-                    window.location = '/teacher_manage/teacher_list/'
+                    location.href = '/teacher_manage/teacher_list/'
                 }
                 else{
                     alert("修改失败");

@@ -19,44 +19,26 @@ def teacher_add(request):
         form_obj = forms.TchForm(request.POST, request.FILES)
         tch_ema = request.POST.get("tch_ema")
         exa = models.teacher_info.objects.filter(tch_ema=tch_ema).exists()
-        if btn == 't':  # 添加教师
-            if form_obj.is_valid() and not exa:
-                form_obj = form_obj.save(commit=False)
-                form_obj.tch_account = request.POST.get("tch_ema")
-                form_obj.tch_pwd = "123456"
+        if form_obj.is_valid() and not exa:  # 添加教师
+            form_obj = form_obj.save(commit=False)
+            form_obj.tch_account = request.POST.get("tch_ema")
+            form_obj.tch_pwd = "123456"
+            if btn == 't':
                 form_obj.status = StateMap.TO_BE_RELEASED
-                form_obj.save()
-                return WreshResponse.json_response(status=HttpResp.OK, msg="successful")
-            else:
-                return WreshResponse.json_response(status=HttpResp.ERROR, msg="failed")
-        elif btn == 'd':  # 草稿箱
-            if form_obj.is_valid() and not exa:
-                form_obj = form_obj.save(commit=False)
-                form_obj.tch_account = request.POST.get("tch_ema")
-                form_obj.tch_pwd = "123456"
+            elif btn == 'd':  # 草稿箱
                 form_obj.status = StateMap.DRAFT
-                form_obj.save()
-                return WreshResponse.json_response(status=HttpResp.OK, msg="successful")
-            else:
-                return WreshResponse.json_response(status=HttpResp.ERROR, msg="failed")
-        elif btn == 'rt':
-            if form_obj.is_valid():
-                form_obj = form_obj.save(commit=False)
-                form_obj.tch_account = request.POST.get("tch_ema")
+            form_obj.save()
+            return WreshResponse.json_response(status=HttpResp.OK, msg="successful")
+        elif form_obj.is_valid():
+            form_obj = form_obj.save(commit=False)
+            form_obj.tch_account = request.POST.get("tch_ema")
+            form_obj.tch_pwd = "123456"
+            if btn == 'rt':
                 form_obj.status = StateMap.TO_BE_RELEASED
-                form_obj.save()
-                return WreshResponse.json_response(status=HttpResp.OK, msg="successful")
-            else:
-                return WreshResponse.json_response(status=HttpResp.ERROR, msg="failed")
-        elif btn == 'rd':
-            if form_obj.is_valid():
-                form_obj = form_obj.save(commit=False)
-                form_obj.tch_account = request.POST.get("tch_ema")
+            elif btn == 'rd':
                 form_obj.status = StateMap.DRAFT
-                form_obj.save()
-                return WreshResponse.json_response(status=HttpResp.OK, msg="successful")
-            else:
-                return WreshResponse.json_response(status=HttpResp.ERROR, msg="failed")
+            form_obj.save()
+            return WreshResponse.json_response(status=HttpResp.OK, msg="successful")
         else:
             return WreshResponse.json_response(status=HttpResp.ERROR, msg="failed")
     else:
